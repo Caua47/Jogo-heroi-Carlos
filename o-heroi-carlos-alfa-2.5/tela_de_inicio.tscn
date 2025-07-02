@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://t5mf3dt5v4yp"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="tela_de_vitoria" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
