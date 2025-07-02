@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://wd4ru68k3cj"]
+
+[ext_resource type="Script" uid="uid://c388dgg7a8bd0" path="res://canvas_layer.gd" id="1_cxk1d"]
+[ext_resource type="Texture2D" uid="uid://b3iwle7eidffw" path="res://Tela/Tela inicial.png" id="2_pvn0d"]
+[ext_resource type="Texture2D" uid="uid://djg4t1gxtrsxk" path="res://icones/jogar.png" id="3_nvytq"]
+[ext_resource type="Texture2D" uid="uid://daidfyrgudn3h" path="res://icones/configuracoes.png" id="4_pdmgf"]
+[ext_resource type="Texture2D" uid="uid://cq1wtiexiypkt" path="res://icones/fechar.png" id="5_17uhk"]
+
+[node name="Tela_inicial" type="CanvasLayer"]
+script = ExtResource("1_cxk1d")
+
+[node name="tela_de_inicio" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="tela_de_inicio"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_pvn0d")
+
+[node name="jogar" type="Button" parent="tela_de_inicio"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 426.0
+offset_right = 786.0
+offset_bottom = 536.0
+icon = ExtResource("3_nvytq")
+flat = true
+
+[node name="configuracoes" type="Button" parent="tela_de_inicio"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 97.0
+offset_bottom = 97.0
+icon = ExtResource("4_pdmgf")
+flat = true
+
+[node name="fechar" type="Button" parent="tela_de_inicio"]
+layout_mode = 0
+offset_left = 1185.0
+offset_top = 9.0
+offset_right = 1263.0
+offset_bottom = 92.0
+icon = ExtResource("5_17uhk")
+flat = true

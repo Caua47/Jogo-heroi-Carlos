@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpawdt1q85dps"]
+
+[ext_resource type="Script" uid="uid://bl1kasphbtrym" path="res://agua.gd" id="1_2mug6"]
+[ext_resource type="Texture2D" uid="uid://7gujhx4hne5m" path="res://gotinha_de_tiro_png.png" id="2_2mug6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkt1y"]
+size = Vector2(176, 97)
+
+[node name="areadaagua" type="Area2D"]
+script = ExtResource("1_2mug6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("2_2mug6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-20, 13)
+shape = SubResource("RectangleShape2D_bkt1y")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

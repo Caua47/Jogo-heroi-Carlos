@@ -1,0 +1,376 @@
+[gd_scene load_steps=34 format=3 uid="uid://bdpngelq664cj"]
+
+[ext_resource type="Texture2D" uid="uid://qtv7r7jque7s" path="res://cenario_png_svg/pagina_1_pronto.png" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://7ok2lkew0q2u" path="res://cenario_png_svg/pagina_2_pronto.png" id="2_0hol4"]
+[ext_resource type="Texture2D" uid="uid://bxqnwucbturgc" path="res://cenario_png_svg/pagina_3_pronto.png" id="3_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://kyxho80kujoj" path="res://plataformas png/plataforma_grama.png" id="4_d21ai"]
+[ext_resource type="Texture2D" uid="uid://hc5jppe3fxa" path="res://Personagens_/boneco.png" id="4_kdubu"]
+[ext_resource type="Texture2D" uid="uid://if03yoxggvv3" path="res://Personagens_/passarinho_azul.png" id="5_hqns4"]
+[ext_resource type="Texture2D" uid="uid://dolx2mf5pdl5c" path="res://Personagens_/foguinho_com_sombra.png" id="5_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://bj5f41qhs3wmi" path="res://Personagens_/coelho.png" id="6_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://de8vra85aq0ux" path="res://plataformas png/plataforma_flutuante.png" id="7_d21ai"]
+[ext_resource type="Texture2D" uid="uid://b3nxurxtpll2c" path="res://plataformas png/plataforma_chao.png" id="8_rj586"]
+[ext_resource type="Texture2D" uid="uid://x0xy4laryjvp" path="res://plataformas png/plataforma.png" id="9_4d7sh"]
+[ext_resource type="Texture2D" uid="uid://dp34hnxuc678p" path="res://plataformas png/3_plataformas.png" id="10_ir8iy"]
+[ext_resource type="PackedScene" uid="uid://b31lbn7aetu5r" path="res://hud.tscn" id="12_x0ka3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
+size = Vector2(14515, 402)
+
+[sub_resource type="GDScript" id="GDScript_rj586"]
+resource_name = "Carlos"
+script/source = "extends CharacterBody2D
+
+@onready var bala = preload(\"res://agua.tscn\")
+const SPEED = 1200
+const JUMP_VELOCITY = -1400
+var vida = 3
+var dir = 1
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_up\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction != 0:
+		velocity.x = direction * SPEED
+		dir = direction
+		$Sprite2D.flip_h = dir < 0
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+
+
+	move_and_slide()
+	
+	atirar()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == \"Carlos\":
+		queue_free()
+
+
+
+func atirar():
+	if Input.is_action_just_pressed(\"atirar\"):
+		var bullet = bala.instantiate()
+		if $Sprite2D.flip_h:
+			bullet.dir = -1
+		else:
+			bullet.dir = 1
+		bullet.global_position = $Marker2D.global_position
+		get_parent().add_child(bullet)
+func take_damage():
+	vida -= 1
+	get_parent().get_node(\"HUD\").set_life(vida)
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ir8iy"]
+radius = 135.0
+height = 424.0
+
+[sub_resource type="GDScript" id="GDScript_hqns4"]
+resource_name = "passaro_base"
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	move_and_slide()
+	
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == \"Carlos\":
+		queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k73cj"]
+size = Vector2(135, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjqkl"]
+size = Vector2(249, 175)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fs4d3"]
+size = Vector2(152, 243)
+
+[sub_resource type="GDScript" id="GDScript_kdubu"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name ==\"\":
+		queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
+size = Vector2(154, 275)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
+size = Vector2(157, 53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(606.896, 963.934)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
+size = Vector2(1689.66, 592.964)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
+size = Vector2(409.523, 764.286)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqns4"]
+size = Vector2(1666.67, 623.189)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0ka3"]
+size = Vector2(1663.77, 614.493)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7mo"]
+size = Vector2(1655.07, 620.29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8wp"]
+size = Vector2(783.487, 256.881)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2bti"]
+size = Vector2(475.25, 165.138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta5nu"]
+size = Vector2(1280.73, 352.294)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flf07"]
+size = Vector2(1668.14, 614.363)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(2438, 1376)
+texture = ExtResource("1_wtcfe")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(7275, 1376)
+texture = ExtResource("2_0hol4")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(12113, 1378)
+texture = ExtResource("3_q6r6c")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(7783, 2534)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-507.5, 3)
+shape = SubResource("RectangleShape2D_d21ai")
+
+[node name="Carlos" type="CharacterBody2D" parent="."]
+position = Vector2(351, 2033)
+script = SubResource("GDScript_rj586")
+
+[node name="Sprite2D" type="Sprite2D" parent="Carlos"]
+scale = Vector2(0.785, 0.785)
+texture = ExtResource("4_kdubu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Carlos"]
+position = Vector2(4, 9)
+shape = SubResource("CapsuleShape2D_ir8iy")
+
+[node name="Camera2D" type="Camera2D" parent="Carlos"]
+position = Vector2(1002, -244)
+zoom = Vector2(0.32, 0.32)
+limit_left = 15
+limit_top = 20
+limit_right = 14535
+limit_bottom = 2740
+editor_draw_limits = true
+
+[node name="Marker2D" type="Marker2D" parent="Carlos"]
+position = Vector2(176, -4)
+
+[node name="Passaro_azul_base" type="CharacterBody2D" parent="."]
+position = Vector2(2030, 1716)
+script = SubResource("GDScript_hqns4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Passaro_azul_base"]
+position = Vector2(-26, 140)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_hqns4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Passaro_azul_base"]
+position = Vector2(-37.5, 148.5)
+shape = SubResource("RectangleShape2D_k73cj")
+
+[node name="Area2D" type="Area2D" parent="Passaro_azul_base"]
+position = Vector2(-36, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Passaro_azul_base/Area2D"]
+position = Vector2(3.5, -17.5)
+shape = SubResource("RectangleShape2D_rjqkl")
+
+[node name="Coelho" type="CharacterBody2D" parent="."]
+position = Vector2(2836, 1281)
+
+[node name="Sprite2D" type="Sprite2D" parent="Coelho"]
+position = Vector2(1, 1)
+scale = Vector2(0.29, 0.26)
+texture = ExtResource("6_0h7mo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coelho"]
+position = Vector2(-2, 8.5)
+shape = SubResource("RectangleShape2D_fs4d3")
+
+[node name="Fogo1" type="CharacterBody2D" parent="." groups=["inimigo"]]
+position = Vector2(5729, 2678)
+script = SubResource("GDScript_kdubu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fogo1"]
+position = Vector2(-1987, -495.5)
+shape = SubResource("RectangleShape2D_kdubu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fogo1"]
+position = Vector2(-1974, -526)
+scale = Vector2(0.78, 0.78)
+texture = ExtResource("5_q6r6c")
+
+[node name="Area2D" type="Area2D" parent="Fogo1"]
+position = Vector2(463, 567)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fogo1/Area2D"]
+position = Vector2(-2449.5, -1174.5)
+shape = SubResource("RectangleShape2D_q6r6c")
+
+[node name="Hud" parent="." instance=ExtResource("12_x0ka3")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2000, 2113)
+scale = Vector2(0.435, 0.435)
+texture = ExtResource("4_d21ai")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D2"]
+position = Vector2(11.4941, 68.8525)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(3138, 1441)
+scale = Vector2(0.435, 0.398)
+texture = ExtResource("7_d21ai")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D2"]
+position = Vector2(-108.046, 125.628)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/StaticBody2D"]
+position = Vector2(55.1727, 80.4019)
+shape = SubResource("RectangleShape2D_rj586")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(3177, 2231)
+scale = Vector2(0.21, 0.28)
+texture = ExtResource("8_rj586")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D3/StaticBody2D"]
+position = Vector2(233.332, 46.4287)
+shape = SubResource("RectangleShape2D_ir8iy")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(4325, 1669)
+scale = Vector2(0.345, 0.345)
+texture = ExtResource("9_4d7sh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D4/StaticBody2D"]
+position = Vector2(15.9414, 172.465)
+shape = SubResource("RectangleShape2D_hqns4")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(5333, 1274)
+scale = Vector2(0.345, 0.345)
+texture = ExtResource("9_4d7sh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D5/StaticBody2D"]
+position = Vector2(17.3916, 173.913)
+shape = SubResource("RectangleShape2D_x0ka3")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(6232, 1818)
+scale = Vector2(0.345, 0.345)
+texture = ExtResource("9_4d7sh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D6/StaticBody2D"]
+position = Vector2(13.0449, 176.812)
+shape = SubResource("RectangleShape2D_0h7mo")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(8339, 1963)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("10_ir8iy")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D7"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D7/StaticBody2D"]
+position = Vector2(189.908, -27.5229)
+shape = SubResource("RectangleShape2D_nr8wp")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Sprite2D7"]
+position = Vector2(271.56, -249.541)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D7/StaticBody2D2"]
+position = Vector2(71.9492, 11.0085)
+shape = SubResource("RectangleShape2D_d2bti")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Sprite2D7"]
+position = Vector2(-190.826, 313.761)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D7/StaticBody2D3"]
+position = Vector2(137.614, -40.3672)
+shape = SubResource("RectangleShape2D_ta5nu")
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+position = Vector2(9404, 1710)
+scale = Vector2(0.278753, 0.260432)
+texture = ExtResource("9_4d7sh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D8/StaticBody2D"]
+position = Vector2(16.1445, 168.95)
+shape = SubResource("RectangleShape2D_flf07")
+
+[connection signal="body_entered" from="Passaro_azul_base/Area2D" to="Passaro_azul_base" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Fogo1/Area2D" to="Carlos" method="_on_area_2d_body_entered"]

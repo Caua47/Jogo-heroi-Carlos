@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=3 uid="uid://b31lbn7aetu5r"]
+
+[ext_resource type="Texture2D" uid="uid://cmmlq823wry0l" path="res://icones/assets_separados/coracao.png" id="1_rftc2"]
+[ext_resource type="Texture2D" uid="uid://cj8hgy0arl4bb" path="res://icones/assets_separados/relogio.png" id="2_rftc2"]
+[ext_resource type="Texture2D" uid="uid://b7kjjmcn2eqoa" path="res://icones/assets_separados/pause.png" id="3_61f8s"]
+[ext_resource type="Texture2D" uid="uid://cnnq47dcmj2rs" path="res://Tela/pause.png" id="4_g10ll"]
+[ext_resource type="Texture2D" uid="uid://tb1ntokeac2r" path="res://icones/replay.png" id="5_gpiub"]
+[ext_resource type="Texture2D" uid="uid://b10nkiavt3rbo" path="res://icones/play.png" id="5_rftc2"]
+[ext_resource type="Texture2D" uid="uid://ritb8fw8qrx4" path="res://icones/menu.png" id="6_amv7k"]
+
+[sub_resource type="GDScript" id="GDScript_1fv7p"]
+resource_name = "Hud"
+script/source = "extends CanvasLayer
+
+@onready var tela = preload(\"res://Tela_inicial.tscn\")
+
+var is_paused = false
+
+func _ready():
+	$pausar.pressed.connect(_on_pause_button_pressed)
+	$menu_de_pause/ContinueButton.pressed.connect(_on_continue_pressed)
+	$menu_de_pause/RestartButton.pressed.connect(_on_restart_pressed)
+	$menu_de_pause/QuitButton.pressed.connect(_on_quit_pressed)
+
+func _on_pause_button_pressed():
+	is_paused = true
+	get_tree().paused = true
+	$\"menu_de_pause\".visible = true
+
+func _on_continue_pressed():
+	is_paused = false
+	get_tree().paused = false
+	$\"menu_de_pause\".visible = false
+
+func _on_restart_pressed():
+	
+	get_tree().reload_current_scene()
+
+func _on_quit_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file(\"res://Tela_inicial.tscn\")
+"
+
+[node name="Hud" type="CanvasLayer"]
+script = SubResource("GDScript_1fv7p")
+
+[node name="Vida 1" type="HBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_right = 195.0
+offset_bottom = 377.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Vida 1"]
+layout_mode = 2
+texture = ExtResource("1_rftc2")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Vida 1"]
+layout_mode = 2
+text = "3"
+
+[node name="tempo" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.0
+offset_right = 353.0
+offset_bottom = 393.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="tempo"]
+layout_mode = 2
+texture = ExtResource("2_rftc2")
+
+[node name="Label" type="Label" parent="tempo"]
+layout_mode = 2
+text = "00:00"
+
+[node name="pausar" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("3_61f8s")
+flat = true
+
+[node name="menu_de_pause" type="Control" parent="."]
+process_mode = 1
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="imagem_fundo" type="TextureRect" parent="menu_de_pause"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_g10ll")
+stretch_mode = 4
+
+[node name="ContinueButton" type="Button" parent="menu_de_pause"]
+process_mode = 3
+layout_mode = 0
+offset_left = 459.0
+offset_top = 385.0
+offset_right = 550.0
+offset_bottom = 478.0
+icon = ExtResource("5_rftc2")
+flat = true
+
+[node name="RestartButton" type="Button" parent="menu_de_pause"]
+process_mode = 3
+layout_mode = 0
+offset_left = 734.0
+offset_top = 387.0
+offset_right = 825.0
+offset_bottom = 479.0
+icon = ExtResource("5_gpiub")
+flat = true
+
+[node name="QuitButton" type="Button" parent="menu_de_pause"]
+process_mode = 3
+layout_mode = 0
+offset_left = 602.0
+offset_top = 387.0
+offset_right = 695.0
+offset_bottom = 482.0
+icon = ExtResource("6_amv7k")
+flat = true
+
+[connection signal="pressed" from="menu_de_pause/ContinueButton" to="." method="_on_continue_button_pressed"]
