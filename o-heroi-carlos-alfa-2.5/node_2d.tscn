@@ -1,18 +1,18 @@
-[gd_scene load_steps=34 format=3 uid="uid://bdpngelq664cj"]
+[gd_scene load_steps=43 format=3 uid="uid://bdpngelq664cj"]
 
-[ext_resource type="Texture2D" uid="uid://qtv7r7jque7s" path="res://cenario_png_svg/pagina_1_pronto.png" id="1_wtcfe"]
-[ext_resource type="Texture2D" uid="uid://7ok2lkew0q2u" path="res://cenario_png_svg/pagina_2_pronto.png" id="2_0hol4"]
-[ext_resource type="Texture2D" uid="uid://bxqnwucbturgc" path="res://cenario_png_svg/pagina_3_pronto.png" id="3_q6r6c"]
-[ext_resource type="Texture2D" uid="uid://kyxho80kujoj" path="res://plataformas png/plataforma_grama.png" id="4_d21ai"]
-[ext_resource type="Texture2D" uid="uid://hc5jppe3fxa" path="res://Personagens_/boneco.png" id="4_kdubu"]
-[ext_resource type="Texture2D" uid="uid://if03yoxggvv3" path="res://Personagens_/passarinho_azul.png" id="5_hqns4"]
-[ext_resource type="Texture2D" uid="uid://dolx2mf5pdl5c" path="res://Personagens_/foguinho_com_sombra.png" id="5_q6r6c"]
-[ext_resource type="Texture2D" uid="uid://de8vra85aq0ux" path="res://plataformas png/plataforma_flutuante.png" id="7_d21ai"]
-[ext_resource type="Texture2D" uid="uid://b3nxurxtpll2c" path="res://plataformas png/plataforma_chao.png" id="8_rj586"]
-[ext_resource type="Texture2D" uid="uid://x0xy4laryjvp" path="res://plataformas png/plataforma.png" id="9_4d7sh"]
-[ext_resource type="Texture2D" uid="uid://dp34hnxuc678p" path="res://plataformas png/3_plataformas.png" id="10_ir8iy"]
-[ext_resource type="PackedScene" uid="uid://b31lbn7aetu5r" path="res://hud.tscn" id="12_x0ka3"]
-[ext_resource type="Script" path="res://area_2d.gd" id="13_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://qtv7r7jque7s" path="res://cenario_png_svg/pagina_1_pronto.png" id="1_j6xpk"]
+[ext_resource type="Texture2D" uid="uid://7ok2lkew0q2u" path="res://cenario_png_svg/pagina_2_pronto.png" id="2_k1emr"]
+[ext_resource type="Texture2D" uid="uid://bxqnwucbturgc" path="res://cenario_png_svg/pagina_3_pronto.png" id="3_kw8ga"]
+[ext_resource type="Texture2D" uid="uid://dtnn78nk6ubfg" path="res://Personagens_/png.png" id="4_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://if03yoxggvv3" path="res://Personagens_/passarinho_azul.png" id="5_eo7g4"]
+[ext_resource type="Texture2D" uid="uid://dolx2mf5pdl5c" path="res://Personagens_/foguinho_com_sombra.png" id="6_1cfq1"]
+[ext_resource type="PackedScene" uid="uid://b31lbn7aetu5r" path="res://hud.tscn" id="7_p76gh"]
+[ext_resource type="Texture2D" uid="uid://kyxho80kujoj" path="res://plataformas png/plataforma_grama.png" id="8_arlou"]
+[ext_resource type="Texture2D" uid="uid://de8vra85aq0ux" path="res://plataformas png/plataforma_flutuante.png" id="9_s1s84"]
+[ext_resource type="Texture2D" uid="uid://b3nxurxtpll2c" path="res://plataformas png/plataforma_chao.png" id="10_6ll2x"]
+[ext_resource type="Texture2D" uid="uid://x0xy4laryjvp" path="res://plataformas png/plataforma.png" id="11_bcfch"]
+[ext_resource type="Texture2D" uid="uid://dp34hnxuc678p" path="res://plataformas png/3_plataformas.png" id="12_ynwwy"]
+[ext_resource type="Script" uid="uid://bn3kglslm3e0n" path="res://area_2d.gd" id="13_am8ej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
 size = Vector2(14515, 402)
@@ -23,6 +23,8 @@ script/source = "extends CharacterBody2D
 @onready var tela_vitoria = preload(\"res://tela_de_vitoria.tscn\")
 @onready var tela_de_derrota = preload(\"res://tela_de_derrota.tscn\")
 @onready var bala = preload(\"res://agua.tscn\")
+
+
 const SPEED = 1200
 const JUMP_VELOCITY = -1400
 var vida = 3
@@ -45,10 +47,11 @@ func _physics_process(delta: float) -> void:
 	if direction != 0:
 		velocity.x = direction * SPEED
 		dir = direction
-		$Sprite2D.flip_h = dir < 0
+		$AnimatedSprite2D.flip_h = dir < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
+		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.play(\"Carlos\")
 
 
 	move_and_slide()
@@ -76,7 +79,7 @@ func morrer():
 func atirar():
 	if Input.is_action_just_pressed(\"atirar\"):
 		var bullet = bala.instantiate()
-		if $Sprite2D.flip_h:
+		if $AnimatedSprite2D.flip_h:
 			bullet.dir = -1
 		else:
 			bullet.dir = 1
@@ -98,6 +101,75 @@ func _on_timer_timeout() -> void:
 	var derrota = tela_de_derrota.instantiate()
 	add_child(derrota)
 "
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2bti"]
+atlas = ExtResource("4_0h7mo")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr8wp"]
+atlas = ExtResource("4_0h7mo")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta5nu"]
+atlas = ExtResource("4_0h7mo")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flf07"]
+atlas = ExtResource("4_0h7mo")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k73cj"]
+atlas = ExtResource("4_0h7mo")
+region = Rect2(2000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjqkl"]
+atlas = ExtResource("4_0h7mo")
+region = Rect2(2500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs4d3"]
+atlas = ExtResource("4_0h7mo")
+region = Rect2(3000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h7mo"]
+atlas = ExtResource("4_0h7mo")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7vxoj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2bti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr8wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta5nu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flf07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k73cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjqkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs4d3")
+}],
+"loop": true,
+"name": &"Carlos",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h7mo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ir8iy"]
 radius = 135.0
@@ -198,15 +270,15 @@ size = Vector2(350, 373)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(2438, 1376)
-texture = ExtResource("1_wtcfe")
+texture = ExtResource("1_j6xpk")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(7275, 1376)
-texture = ExtResource("2_0hol4")
+texture = ExtResource("2_k1emr")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(12113, 1378)
-texture = ExtResource("3_q6r6c")
+texture = ExtResource("3_kw8ga")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(7783, 2534)
@@ -219,9 +291,10 @@ shape = SubResource("RectangleShape2D_d21ai")
 position = Vector2(351, 2033)
 script = SubResource("GDScript_rj586")
 
-[node name="Sprite2D" type="Sprite2D" parent="Carlos"]
-scale = Vector2(0.785, 0.785)
-texture = ExtResource("4_kdubu")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Carlos"]
+sprite_frames = SubResource("SpriteFrames_7vxoj")
+animation = &"Carlos"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Carlos"]
 position = Vector2(4, 9)
@@ -246,7 +319,7 @@ script = SubResource("GDScript_hqns4")
 [node name="Sprite2D" type="Sprite2D" parent="Passaro_azul_base"]
 position = Vector2(-26, 140)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("5_hqns4")
+texture = ExtResource("5_eo7g4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Passaro_azul_base"]
 position = Vector2(-37.5, 148.5)
@@ -270,7 +343,7 @@ shape = SubResource("RectangleShape2D_kdubu")
 [node name="Sprite2D" type="Sprite2D" parent="Fogo1"]
 position = Vector2(-1974, -526)
 scale = Vector2(0.78, 0.78)
-texture = ExtResource("5_q6r6c")
+texture = ExtResource("6_1cfq1")
 
 [node name="Area2D" type="Area2D" parent="Fogo1"]
 position = Vector2(463, 567)
@@ -279,12 +352,12 @@ position = Vector2(463, 567)
 position = Vector2(-2449.5, -1174.5)
 shape = SubResource("RectangleShape2D_q6r6c")
 
-[node name="Hud" parent="." instance=ExtResource("12_x0ka3")]
+[node name="Hud" parent="." instance=ExtResource("7_p76gh")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2000, 2113)
 scale = Vector2(0.435, 0.435)
-texture = ExtResource("4_d21ai")
+texture = ExtResource("8_arlou")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Sprite2D"]
 
@@ -295,7 +368,7 @@ shape = SubResource("RectangleShape2D_0hol4")
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(3138, 1441)
 scale = Vector2(0.435, 0.398)
-texture = ExtResource("7_d21ai")
+texture = ExtResource("9_s1s84")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D2"]
 position = Vector2(-108.046, 125.628)
@@ -307,7 +380,7 @@ shape = SubResource("RectangleShape2D_rj586")
 [node name="Sprite2D3" type="Sprite2D" parent="."]
 position = Vector2(3177, 2231)
 scale = Vector2(0.21, 0.28)
-texture = ExtResource("8_rj586")
+texture = ExtResource("10_6ll2x")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D3"]
 
@@ -318,7 +391,7 @@ shape = SubResource("RectangleShape2D_ir8iy")
 [node name="Sprite2D4" type="Sprite2D" parent="."]
 position = Vector2(4325, 1669)
 scale = Vector2(0.345, 0.345)
-texture = ExtResource("9_4d7sh")
+texture = ExtResource("11_bcfch")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D4"]
 
@@ -329,7 +402,7 @@ shape = SubResource("RectangleShape2D_hqns4")
 [node name="Sprite2D5" type="Sprite2D" parent="."]
 position = Vector2(5333, 1274)
 scale = Vector2(0.345, 0.345)
-texture = ExtResource("9_4d7sh")
+texture = ExtResource("11_bcfch")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D5"]
 
@@ -340,7 +413,7 @@ shape = SubResource("RectangleShape2D_x0ka3")
 [node name="Sprite2D6" type="Sprite2D" parent="."]
 position = Vector2(6232, 1818)
 scale = Vector2(0.345, 0.345)
-texture = ExtResource("9_4d7sh")
+texture = ExtResource("11_bcfch")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D6"]
 
@@ -351,7 +424,7 @@ shape = SubResource("RectangleShape2D_0h7mo")
 [node name="Sprite2D7" type="Sprite2D" parent="."]
 position = Vector2(8339, 1963)
 scale = Vector2(0.85, 0.85)
-texture = ExtResource("10_ir8iy")
+texture = ExtResource("12_ynwwy")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D7"]
 
@@ -376,7 +449,7 @@ shape = SubResource("RectangleShape2D_ta5nu")
 [node name="Sprite2D8" type="Sprite2D" parent="."]
 position = Vector2(9404, 1710)
 scale = Vector2(0.278753, 0.260432)
-texture = ExtResource("9_4d7sh")
+texture = ExtResource("11_bcfch")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D8"]
 
@@ -386,7 +459,7 @@ shape = SubResource("RectangleShape2D_flf07")
 
 [node name="Areafinal" type="Area2D" parent="." groups=["Vitoria"]]
 position = Vector2(14132, 2149)
-script = ExtResource("13_0h7mo")
+script = ExtResource("13_am8ej")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areafinal"]
 position = Vector2(24, 0.5)

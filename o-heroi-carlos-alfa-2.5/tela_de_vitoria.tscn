@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://rkk07lwllyur"]
 
-[ext_resource type="Script" path="res://tela_de_vitoria.gd" id="1_pvrkt"]
+[ext_resource type="Script" uid="uid://b502rc7xx51oe" path="res://tela_de_vitoria.gd" id="1_pvrkt"]
 [ext_resource type="Texture2D" uid="uid://cij7tyowqwmj6" path="res://Tela/tela_de_vitoria.png" id="2_5tv2n"]
 [ext_resource type="Texture2D" uid="uid://ritb8fw8qrx4" path="res://icones/menu.png" id="3_jkwkt"]
 [ext_resource type="Texture2D" uid="uid://tb1ntokeac2r" path="res://icones/replay.png" id="4_wipwu"]
