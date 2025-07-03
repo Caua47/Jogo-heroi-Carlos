@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var jogo_cena = preload("res://tela_de_inicio.tscn")  
+var jogo_cena = preload("res://tela_inicial.tscn")  
 
 var teladeinicio = true
 
@@ -12,7 +12,8 @@ func _ready():
 func _on_voltar_pressed():
 	teladeinicio = false
 	$tela_de_vitoria.visible = false
-	get_tree().change_scene_to_file("res://node_2d.tscn")
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Tela_inicial.tscn")
 
 
 func _on_recomecar_pressed():
