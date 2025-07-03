@@ -17,3 +17,5 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("inimigo"):
 		body.queue_free()
 		queue_free()
+	if  body.is_in_group("parede"):
+		queue_free()
