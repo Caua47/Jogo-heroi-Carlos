@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bdpngelq664cj"]
+[gd_scene load_steps=65 format=3 uid="uid://bdpngelq664cj"]
 
 [ext_resource type="Texture2D" uid="uid://qtv7r7jque7s" path="res://cenario_png_svg/pagina_1_pronto.png" id="1_j6xpk"]
 [ext_resource type="Texture2D" uid="uid://7ok2lkew0q2u" path="res://cenario_png_svg/pagina_2_pronto.png" id="2_k1emr"]
@@ -20,6 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://b5opc4jg0g345" path="res://animacao_fogo/fogo_5.png" id="18_e8dv2"]
 [ext_resource type="Texture2D" uid="uid://cbvtdcdhsw8hp" path="res://animacao_fogo/fogo_6.png" id="19_2nhjh"]
 [ext_resource type="Script" path="res://animated_sprite_2d.gd" id="20_fs4d3"]
+[ext_resource type="Texture2D" uid="uid://bfiv1dxdg5dns" path="res://Personagens_/tatu.png" id="21_pgqot"]
+[ext_resource type="Texture2D" uid="uid://bj5f41qhs3wmi" path="res://Personagens_/coelho.png" id="22_jhb3u"]
+[ext_resource type="Texture2D" uid="uid://dg8aibfrdikvh" path="res://icones/assets_separados/tronco.png" id="23_37rib"]
+[ext_resource type="Texture2D" uid="uid://us5xkv6eo02f" path="res://Personagens_/tucano.png" id="24_itiob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
 size = Vector2(14515, 402)
@@ -309,6 +313,30 @@ size = Vector2(215, 2735)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ei405"]
 size = Vector2(187, 2719)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaalf"]
+size = Vector2(309, 229.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tji8"]
+size = Vector2(148, 276.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qhtw"]
+size = Vector2(192, 215.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyog6"]
+size = Vector2(339.5, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqtxb"]
+size = Vector2(371, 258)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pplhk"]
+size = Vector2(198.5, 262)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gep2n"]
+size = Vector2(159.75, 238)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ounvi"]
+size = Vector2(194, 273)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
@@ -542,6 +570,94 @@ position = Vector2(14733, 1186)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2(-103.5, 201.5)
 shape = SubResource("RectangleShape2D_ei405")
+
+[node name="porradotatu" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="porradotatu"]
+position = Vector2(2643, 2208)
+scale = Vector2(0.608312, 0.603518)
+texture = ExtResource("21_pgqot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="porradotatu"]
+position = Vector2(2635.5, 2238.88)
+shape = SubResource("RectangleShape2D_oaalf")
+
+[node name="elisa" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="elisa"]
+position = Vector2(3281, 1199)
+scale = Vector2(0.280856, 0.263134)
+texture = ExtResource("22_jhb3u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="elisa"]
+position = Vector2(3276, 1185.75)
+shape = SubResource("RectangleShape2D_3tji8")
+
+[node name="Fogo2" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Fogo2"]
+position = Vector2(2874, 1246)
+scale = Vector2(0.763224, 0.747551)
+texture = ExtResource("6_1cfq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fogo2"]
+position = Vector2(2864, 1275.25)
+shape = SubResource("RectangleShape2D_7qhtw")
+
+[node name="tronco" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="tronco"]
+position = Vector2(3270, 1357)
+scale = Vector2(0.205343, 0.185496)
+texture = ExtResource("23_37rib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tronco"]
+position = Vector2(3289, 1357)
+shape = SubResource("RectangleShape2D_eyog6")
+
+[node name="tucano" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="tucano"]
+position = Vector2(6266, 1658)
+scale = Vector2(0.602644, 0.591051)
+texture = ExtResource("24_itiob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tucano"]
+position = Vector2(6278, 1632)
+shape = SubResource("RectangleShape2D_kqtxb")
+
+[node name="fogo3" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="fogo3"]
+position = Vector2(7953, 1882)
+scale = Vector2(0.858942, 0.871327)
+texture = ExtResource("6_1cfq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo3"]
+position = Vector2(7943, 1913)
+shape = SubResource("RectangleShape2D_pplhk")
+
+[node name="fogo4" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="fogo4"]
+position = Vector2(8321.5, 1672.37)
+scale = Vector2(0.782115, 0.818566)
+texture = ExtResource("6_1cfq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo4"]
+position = Vector2(8308.13, 1696)
+shape = SubResource("RectangleShape2D_gep2n")
+
+[node name="fogo5" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="fogo5"]
+position = Vector2(8645, 1504)
+scale = Vector2(0.847607, 0.963045)
+texture = ExtResource("6_1cfq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo5"]
+position = Vector2(8630, 1527.5)
+shape = SubResource("RectangleShape2D_ounvi")
 
 [connection signal="body_entered" from="Passaro_azul_base/Area2D" to="Passaro_azul_base" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Fogo1/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
