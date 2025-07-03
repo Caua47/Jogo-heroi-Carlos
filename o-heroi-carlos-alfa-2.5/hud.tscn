@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b31lbn7aetu5r"]
 
-[ext_resource type="Texture2D" uid="uid://cmmlq823wry0l" path="res://icones/assets_separados/coracao.png" id="1_rftc2"]
+[ext_resource type="Texture2D" uid="uid://ulj4nduoji07" path="res://icones/coracao.png" id="1_b2f4i"]
 [ext_resource type="Texture2D" uid="uid://cj8hgy0arl4bb" path="res://icones/assets_separados/relogio.png" id="2_rftc2"]
 [ext_resource type="Texture2D" uid="uid://b7kjjmcn2eqoa" path="res://icones/assets_separados/pause.png" id="3_61f8s"]
 [ext_resource type="Texture2D" uid="uid://cnnq47dcmj2rs" path="res://Tela/pause.png" id="4_g10ll"]
@@ -13,7 +13,16 @@ resource_name = "Hud"
 script/source = "extends CanvasLayer
 
 @onready var tela = preload(\"res://tela_de_inicio.tscn\")
+@onready var coracoes = [
+	$\"Vida 1/coracao1\",
+	$\"Vida 1/coraca02\",
+	$\"Vida 1/coracao3\"
+]
 
+var coracao_cheio = preload(\"res://icones/coracao.png\")
+
+
+var vidas = 3
 var tempo = preload(\"res://tela_de_derrota.tscn\")
 var is_paused = false
 var tempo_total = 180
@@ -62,6 +71,15 @@ func atualizar_label():
 func mostrar_tela_derrota():
 	get_tree().paused = false
 	get_tree().change_scene_to_file(\"res://tela_de_derrota.tscn\")
+
+
+func duduvidas(valor):
+	vidas = valor
+	for i in range(3):
+		if i < vidas:
+			coracoes[i].texture = coracao_cheio
+		else:
+			coracao_cheio.visible = false
 "
 
 [node name="Hud" type="CanvasLayer"]
@@ -71,22 +89,27 @@ script = SubResource("GDScript_1fv7p")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -210.0
-offset_right = 195.0
-offset_bottom = 377.0
+offset_left = -280.0
+offset_top = 18.0
+offset_right = 187.0
+offset_bottom = 149.0
 grow_horizontal = 0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="Vida 1"]
+[node name="coracao1" type="TextureRect" parent="Vida 1"]
 layout_mode = 2
-texture = ExtResource("1_rftc2")
+texture = ExtResource("1_b2f4i")
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="Vida 1"]
+[node name="coraca02" type="TextureRect" parent="Vida 1"]
 layout_mode = 2
-text = "3"
+texture = ExtResource("1_b2f4i")
+
+[node name="coracao3" type="TextureRect" parent="Vida 1"]
+layout_mode = 2
+texture = ExtResource("1_b2f4i")
 
 [node name="tempo" type="HBoxContainer" parent="."]
 anchors_preset = 5

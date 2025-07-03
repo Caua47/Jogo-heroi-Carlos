@@ -12,14 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://b3nxurxtpll2c" path="res://plataformas png/plataforma_chao.png" id="10_6ll2x"]
 [ext_resource type="Texture2D" uid="uid://x0xy4laryjvp" path="res://plataformas png/plataforma.png" id="11_bcfch"]
 [ext_resource type="Texture2D" uid="uid://dp34hnxuc678p" path="res://plataformas png/3_plataformas.png" id="12_ynwwy"]
-[ext_resource type="Script" uid="uid://bn3kglslm3e0n" path="res://area_2d.gd" id="13_am8ej"]
+[ext_resource type="Script" path="res://area_2d.gd" id="13_am8ej"]
 [ext_resource type="Texture2D" uid="uid://l83s1d7a2ew" path="res://animacao_fogo/fogo_1.png" id="14_rjqkl"]
 [ext_resource type="Texture2D" uid="uid://gf2t1f6iku5g" path="res://animacao_fogo/fogo_2.png" id="15_fs4d3"]
 [ext_resource type="Texture2D" uid="uid://uwpmff6tyuhq" path="res://animacao_fogo/fogo_3.png" id="16_7vxoj"]
 [ext_resource type="Texture2D" uid="uid://ch2pr03swag7p" path="res://animacao_fogo/fogo_4.png" id="17_ei405"]
 [ext_resource type="Texture2D" uid="uid://b5opc4jg0g345" path="res://animacao_fogo/fogo_5.png" id="18_e8dv2"]
 [ext_resource type="Texture2D" uid="uid://cbvtdcdhsw8hp" path="res://animacao_fogo/fogo_6.png" id="19_2nhjh"]
-[ext_resource type="Script" uid="uid://dg5jv124stftj" path="res://animated_sprite_2d.gd" id="20_fs4d3"]
+[ext_resource type="Script" path="res://animated_sprite_2d.gd" id="20_fs4d3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
 size = Vector2(14515, 402)
@@ -30,13 +30,12 @@ script/source = "extends CharacterBody2D
 @onready var tela_vitoria = preload(\"res://tela_de_vitoria.tscn\")
 @onready var tela_de_derrota = preload(\"res://tela_de_derrota.tscn\")
 @onready var bala = preload(\"res://agua.tscn\")
-
-
+@onready var hud = $\"../Hud\"
 const SPEED = 1200
 const JUMP_VELOCITY = -1400
 var vida = 3
 var dir = 1
-
+var vidas = 3
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -107,6 +106,13 @@ func _on_areafinal_body_entered(body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	var derrota = tela_de_derrota.instantiate()
 	add_child(derrota)
+
+
+func perder_vida():
+	vidas -= 1
+	hud.set_vidas(vidas)
+	if vidas <= 0:
+		morrer()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2bti"]

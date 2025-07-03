@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxq0yotrx2ytg"]
+
+[ext_resource type="Script" path="res://tela_de_configuracoes.gd" id="1_crhxf"]
+[ext_resource type="Texture2D" uid="uid://b2r7lci24s8f6" path="res://Tela/Tela_inicial_configuracoes.png" id="1_w53fy"]
+[ext_resource type="Texture2D" uid="uid://bcexjtl4fijwh" path="res://icones/controles.png" id="2_5tpbw"]
+[ext_resource type="Texture2D" uid="uid://c3oxqwni87qvv" path="res://icones/creditos.png" id="3_77vga"]
+[ext_resource type="Texture2D" uid="uid://cq1wtiexiypkt" path="res://icones/fechar.png" id="5_swddr"]
+
+[node name="tela_de_configuracoes" type="CanvasLayer"]
+script = ExtResource("1_crhxf")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_w53fy")
+
+[node name="controle" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 515.0
+offset_top = 315.0
+offset_right = 764.0
+offset_bottom = 397.0
+icon = ExtResource("2_5tpbw")
+flat = true
+
+[node name="creditos" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 418.0
+offset_right = 763.0
+offset_bottom = 500.0
+icon = ExtResource("3_77vga")
+flat = true
+
+[node name="quitt" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 745.0
+offset_top = 162.0
+offset_right = 823.0
+offset_bottom = 245.0
+icon = ExtResource("5_swddr")
+flat = true
