@@ -14,13 +14,18 @@ script/source = "extends CanvasLayer
 
 @onready var tela = preload(\"res://Tela_inicial.tscn\")
 
+var tempo = preload(\"res://tela_de_derrota.tscn\")
 var is_paused = false
+var tempo_total = 180
 
 func _ready():
 	$pausar.pressed.connect(_on_pause_button_pressed)
 	$menu_de_pause/ContinueButton.pressed.connect(_on_continue_pressed)
 	$menu_de_pause/RestartButton.pressed.connect(_on_restart_pressed)
 	$menu_de_pause/QuitButton.pressed.connect(_on_quit_pressed)
+	$tempo/Timercontador.timeout.connect(_on_timer_contador_timeout)
+	tempo_total = 180
+	atualizar_label()
 
 func _on_pause_button_pressed():
 	is_paused = true
@@ -39,6 +44,24 @@ func _on_restart_pressed():
 func _on_quit_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file(\"res://Tela_inicial.tscn\")
+
+
+func _on_timer_contador_timeout():
+	tempo_total -= 1
+	if tempo_total >= 0:
+		atualizar_label()
+	else:
+		$tempo/Timercontador.stop()
+		mostrar_tela_derrota()
+
+func atualizar_label():
+	var minutos = tempo_total / 60
+	var segundos = tempo_total % 60
+	$tempo/tempoLabel.text = \"Tempo: %02d:%02d\" % [minutos, segundos]
+
+func mostrar_tela_derrota():
+	get_tree().paused = false
+	get_tree().change_scene_to_file(\"res://tela_de_derrota.tscn\")
 "
 
 [node name="Hud" type="CanvasLayer"]
@@ -79,9 +102,12 @@ scale = Vector2(0.5, 0.5)
 layout_mode = 2
 texture = ExtResource("2_rftc2")
 
-[node name="Label" type="Label" parent="tempo"]
+[node name="tempoLabel" type="Label" parent="tempo"]
 layout_mode = 2
-text = "00:00"
+text = "03:00"
+
+[node name="Timercontador" type="Timer" parent="tempo"]
+autostart = true
 
 [node name="pausar" type="Button" parent="."]
 offset_right = 8.0

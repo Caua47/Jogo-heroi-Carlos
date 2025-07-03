@@ -17,8 +17,8 @@ offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="tela_de_inicio"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1280.0
+offset_bottom = 720.0
 texture = ExtResource("2_pvn0d")
 
 [node name="jogar" type="Button" parent="tela_de_inicio"]
