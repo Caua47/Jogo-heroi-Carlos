@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpadm2mjnd821"]
 
-[ext_resource type="Script" path="res://tela_creditos.gd" id="1_m80c4"]
+[ext_resource type="Script" uid="uid://crpjs4tq4grou" path="res://tela_creditos.gd" id="1_m80c4"]
 [ext_resource type="Texture2D" uid="uid://chu0t3kkb3xh2" path="res://icones/Telacreditos.png" id="1_vf27l"]
 [ext_resource type="Texture2D" uid="uid://cq1wtiexiypkt" path="res://icones/fechar.png" id="2_d3lui"]
 
