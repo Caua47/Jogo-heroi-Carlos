@@ -753,8 +753,8 @@ parameters/looping = false
 
 [connection signal="body_entered" from="Passaro_azul_base/Area2D" to="Passaro_azul_base" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Fogo1/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_areafinal_body_entered"]
 [connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_areafinal_body_entered"]
 [connection signal="timeout" from="Timer" to="Carlos" method="_on_timer_timeout"]
 [connection signal="body_entered" from="fogo_inicial/Area2D2" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="porradotatu/Area2D" to="porradotatu" method="_on_area_2d_body_entered"]
