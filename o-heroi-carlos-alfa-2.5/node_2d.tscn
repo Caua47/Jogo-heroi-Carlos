@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://bdpngelq664cj"]
+[gd_scene load_steps=78 format=3 uid="uid://bdpngelq664cj"]
 
 [ext_resource type="Texture2D" uid="uid://qtv7r7jque7s" path="res://cenario_png_svg/pagina_1_pronto.png" id="1_j6xpk"]
 [ext_resource type="Texture2D" uid="uid://7ok2lkew0q2u" path="res://cenario_png_svg/pagina_2_pronto.png" id="2_k1emr"]
@@ -12,22 +12,23 @@
 [ext_resource type="Texture2D" uid="uid://b3nxurxtpll2c" path="res://plataformas png/plataforma_chao.png" id="10_6ll2x"]
 [ext_resource type="Texture2D" uid="uid://x0xy4laryjvp" path="res://plataformas png/plataforma.png" id="11_bcfch"]
 [ext_resource type="Texture2D" uid="uid://dp34hnxuc678p" path="res://plataformas png/3_plataformas.png" id="12_ynwwy"]
-[ext_resource type="Script" uid="uid://bn3kglslm3e0n" path="res://area_2d.gd" id="13_am8ej"]
+[ext_resource type="Script" path="res://area_2d.gd" id="13_am8ej"]
 [ext_resource type="Texture2D" uid="uid://l83s1d7a2ew" path="res://animacao_fogo/fogo_1.png" id="14_rjqkl"]
 [ext_resource type="Texture2D" uid="uid://gf2t1f6iku5g" path="res://animacao_fogo/fogo_2.png" id="15_fs4d3"]
 [ext_resource type="Texture2D" uid="uid://uwpmff6tyuhq" path="res://animacao_fogo/fogo_3.png" id="16_7vxoj"]
 [ext_resource type="Texture2D" uid="uid://ch2pr03swag7p" path="res://animacao_fogo/fogo_4.png" id="17_ei405"]
 [ext_resource type="Texture2D" uid="uid://b5opc4jg0g345" path="res://animacao_fogo/fogo_5.png" id="18_e8dv2"]
 [ext_resource type="Texture2D" uid="uid://cbvtdcdhsw8hp" path="res://animacao_fogo/fogo_6.png" id="19_2nhjh"]
-[ext_resource type="Script" uid="uid://dg5jv124stftj" path="res://animated_sprite_2d.gd" id="20_fs4d3"]
-[ext_resource type="Script" uid="uid://chcybf3dggokl" path="res://porradotatu.gd" id="21_gt76g"]
+[ext_resource type="Script" path="res://animated_sprite_2d.gd" id="20_fs4d3"]
+[ext_resource type="Script" path="res://porradotatu.gd" id="21_gt76g"]
 [ext_resource type="Texture2D" uid="uid://bfiv1dxdg5dns" path="res://Personagens_/tatu.png" id="21_pgqot"]
 [ext_resource type="Texture2D" uid="uid://bj5f41qhs3wmi" path="res://Personagens_/coelho.png" id="22_jhb3u"]
-[ext_resource type="Script" uid="uid://bry2li3kdub7i" path="res://elisa.gd" id="23_1fr6y"]
+[ext_resource type="Script" path="res://elisa.gd" id="23_1fr6y"]
 [ext_resource type="Texture2D" uid="uid://dg8aibfrdikvh" path="res://icones/assets_separados/tronco.png" id="23_37rib"]
-[ext_resource type="Script" uid="uid://brutyrong4n03" path="res://fogo_2.gd" id="23_bjha6"]
+[ext_resource type="Script" path="res://fogo_2.gd" id="23_bjha6"]
 [ext_resource type="Texture2D" uid="uid://us5xkv6eo02f" path="res://Personagens_/tucano.png" id="24_itiob"]
-[ext_resource type="Script" uid="uid://cg248uyydyna4" path="res://tucano.gd" id="27_2hxjc"]
+[ext_resource type="Script" path="res://tucano.gd" id="27_2hxjc"]
+[ext_resource type="AudioStream" uid="uid://bntdhy4sovkr" path="res://0703.MP3" id="29_mhoo8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
 size = Vector2(14515, 402)
@@ -569,11 +570,9 @@ autostart = true
 
 [node name="fogo_inicial" type="CharacterBody2D" parent="." groups=["inimigo"]]
 position = Vector2(0, -0.00012207)
-scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fogo_inicial"]
 position = Vector2(1186, 2052)
-scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_bjha6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="fogo_inicial"]
@@ -586,7 +585,6 @@ script = ExtResource("20_fs4d3")
 
 [node name="Area2D2" type="Area2D" parent="fogo_inicial"]
 position = Vector2(1170, 2074)
-scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fogo_inicial/Area2D2"]
 position = Vector2(15, -21)
@@ -747,10 +745,16 @@ shape = SubResource("RectangleShape2D_ounvi")
 position = Vector2(-10.5, -78.5)
 shape = SubResource("RectangleShape2D_2hxjc")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_mhoo8")
+volume_db = -8.793
+autoplay = true
+parameters/looping = false
+
 [connection signal="body_entered" from="Passaro_azul_base/Area2D" to="Passaro_azul_base" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Fogo1/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_areafinal_body_entered"]
+[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="Carlos" method="_on_timer_timeout"]
 [connection signal="body_entered" from="fogo_inicial/Area2D2" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="porradotatu/Area2D" to="porradotatu" method="_on_area_2d_body_entered"]

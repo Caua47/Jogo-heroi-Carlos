@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dfivsieyarrj8"
+path="res://.godot/imported/Áudio do WhatsApp de 2025-07-03 à(s) 19.23.35_1749c602.mp3-c3b281d81847b5d910399fcbfee151d2.mp3str"
+
+[deps]
+
+source_file="res://Áudio do WhatsApp de 2025-07-03 à(s) 19.23.35_1749c602.mp3"
+dest_files=["res://.godot/imported/Áudio do WhatsApp de 2025-07-03 à(s) 19.23.35_1749c602.mp3-c3b281d81847b5d910399fcbfee151d2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

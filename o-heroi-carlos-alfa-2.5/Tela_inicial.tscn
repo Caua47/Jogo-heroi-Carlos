@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4j82e6t6wn4x"]
+[gd_scene load_steps=7 format=3 uid="uid://d4j82e6t6wn4x"]
 
-[ext_resource type="Script" uid="uid://c388dgg7a8bd0" path="res://canvas_layer.gd" id="1_cxk1d"]
+[ext_resource type="Script" path="res://canvas_layer.gd" id="1_cxk1d"]
 [ext_resource type="Texture2D" uid="uid://b3iwle7eidffw" path="res://Tela/Tela inicial.png" id="2_pvn0d"]
 [ext_resource type="Texture2D" uid="uid://djg4t1gxtrsxk" path="res://icones/jogar.png" id="3_nvytq"]
 [ext_resource type="Texture2D" uid="uid://daidfyrgudn3h" path="res://icones/configuracoes.png" id="4_pdmgf"]
 [ext_resource type="Texture2D" uid="uid://cq1wtiexiypkt" path="res://icones/fechar.png" id="5_17uhk"]
+[ext_resource type="AudioStream" uid="uid://bntdhy4sovkr" path="res://0703.MP3" id="6_f2gnq"]
 
 [node name="Tela_inicial" type="CanvasLayer"]
 script = ExtResource("1_cxk1d")
@@ -47,3 +48,10 @@ offset_right = 1263.0
 offset_bottom = 92.0
 icon = ExtResource("5_17uhk")
 flat = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("6_f2gnq")
+volume_db = 1.981
+autoplay = true
+parameters/looping = false
