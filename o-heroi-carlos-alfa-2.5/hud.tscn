@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b31lbn7aetu5r"]
+[gd_scene load_steps=10 format=3 uid="uid://b31lbn7aetu5r"]
 
 [ext_resource type="Texture2D" uid="uid://ulj4nduoji07" path="res://icones/coracao.png" id="1_b2f4i"]
 [ext_resource type="Texture2D" uid="uid://cj8hgy0arl4bb" path="res://icones/assets_separados/relogio.png" id="2_rftc2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://tb1ntokeac2r" path="res://icones/replay.png" id="5_gpiub"]
 [ext_resource type="Texture2D" uid="uid://b10nkiavt3rbo" path="res://icones/play.png" id="5_rftc2"]
 [ext_resource type="Texture2D" uid="uid://ritb8fw8qrx4" path="res://icones/menu.png" id="6_amv7k"]
+[ext_resource type="Texture2D" uid="uid://cj1w54272akh2" path="res://icones/assets_separados/animal.png" id="8_qs05v"]
 
 [sub_resource type="GDScript" id="GDScript_1fv7p"]
 resource_name = "Hud"
@@ -90,9 +91,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -280.0
-offset_top = 18.0
+offset_top = 27.0
 offset_right = 187.0
-offset_bottom = 149.0
+offset_bottom = 158.0
 grow_horizontal = 0
 scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 8
@@ -115,8 +116,8 @@ texture = ExtResource("1_b2f4i")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -115.0
-offset_right = 353.0
+offset_left = -222.0
+offset_right = 461.0
 offset_bottom = 393.0
 grow_horizontal = 2
 scale = Vector2(0.25, 0.25)
@@ -127,6 +128,7 @@ texture = ExtResource("2_rftc2")
 
 [node name="tempoLabel" type="Label" parent="tempo"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 100
 text = "03:00"
 
 [node name="Timercontador" type="Timer" parent="tempo"]
@@ -183,5 +185,18 @@ offset_right = 695.0
 offset_bottom = 482.0
 icon = ExtResource("6_amv7k")
 flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 1123.0
+offset_right = 1506.0
+offset_bottom = 378.0
+scale = Vector2(0.25, 0.25)
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_qs05v")
+
+[node name="animaislabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
 
 [connection signal="pressed" from="menu_de_pause/ContinueButton" to="." method="_on_continue_button_pressed"]
