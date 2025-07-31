@@ -21,13 +21,31 @@ script/source = "extends CanvasLayer
 ]
 
 var coracao_cheio = preload(\"res://icones/coracao.png\")
-
+@export var player : CharacterBody2D
 
 var vidas = 3
 var tempo = preload(\"res://tela_de_derrota.tscn\")
 var is_paused = false
 var tempo_total = 180
-
+func _process(delta: float) -> void:
+	vidas = player.vida
+	match vidas:
+		0:
+			coracoes[0].visible = false
+			coracoes[1].visible = false
+			coracoes[2].visible = false
+		1:
+			coracoes[0].visible = true
+			coracoes[1].visible = false
+			coracoes[2].visible = false
+		2:
+			coracoes[0].visible = true
+			coracoes[1].visible = true
+			coracoes[2].visible = false
+		3:
+			coracoes[0].visible = true
+			coracoes[1].visible = true
+			coracoes[2].visible = true
 func _ready():
 	$pausar.pressed.connect(_on_pause_button_pressed)
 	$menu_de_pause/ContinueButton.pressed.connect(_on_continue_pressed)
@@ -72,15 +90,6 @@ func atualizar_label():
 func mostrar_tela_derrota():
 	get_tree().paused = false
 	get_tree().change_scene_to_file(\"res://tela_de_derrota.tscn\")
-
-
-func duduvidas(valor):
-	vidas = valor
-	for i in range(3):
-		if i < vidas:
-			coracoes[i].texture = coracao_cheio
-		else:
-			coracao_cheio.visible = false
 "
 
 [node name="Hud" type="CanvasLayer"]
@@ -198,5 +207,7 @@ texture = ExtResource("8_qs05v")
 
 [node name="animaislabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "1"
 
 [connection signal="pressed" from="menu_de_pause/ContinueButton" to="." method="_on_continue_button_pressed"]

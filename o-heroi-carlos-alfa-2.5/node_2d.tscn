@@ -12,22 +12,22 @@
 [ext_resource type="Texture2D" uid="uid://b3nxurxtpll2c" path="res://plataformas png/plataforma_chao.png" id="10_6ll2x"]
 [ext_resource type="Texture2D" uid="uid://x0xy4laryjvp" path="res://plataformas png/plataforma.png" id="11_bcfch"]
 [ext_resource type="Texture2D" uid="uid://dp34hnxuc678p" path="res://plataformas png/3_plataformas.png" id="12_ynwwy"]
-[ext_resource type="Script" path="res://area_2d.gd" id="13_am8ej"]
+[ext_resource type="Script" uid="uid://bn3kglslm3e0n" path="res://area_2d.gd" id="13_am8ej"]
 [ext_resource type="Texture2D" uid="uid://l83s1d7a2ew" path="res://animacao_fogo/fogo_1.png" id="14_rjqkl"]
 [ext_resource type="Texture2D" uid="uid://gf2t1f6iku5g" path="res://animacao_fogo/fogo_2.png" id="15_fs4d3"]
 [ext_resource type="Texture2D" uid="uid://uwpmff6tyuhq" path="res://animacao_fogo/fogo_3.png" id="16_7vxoj"]
 [ext_resource type="Texture2D" uid="uid://ch2pr03swag7p" path="res://animacao_fogo/fogo_4.png" id="17_ei405"]
 [ext_resource type="Texture2D" uid="uid://b5opc4jg0g345" path="res://animacao_fogo/fogo_5.png" id="18_e8dv2"]
 [ext_resource type="Texture2D" uid="uid://cbvtdcdhsw8hp" path="res://animacao_fogo/fogo_6.png" id="19_2nhjh"]
-[ext_resource type="Script" path="res://animated_sprite_2d.gd" id="20_fs4d3"]
-[ext_resource type="Script" path="res://porradotatu.gd" id="21_gt76g"]
+[ext_resource type="Script" uid="uid://dg5jv124stftj" path="res://animated_sprite_2d.gd" id="20_fs4d3"]
+[ext_resource type="Script" uid="uid://chcybf3dggokl" path="res://porradotatu.gd" id="21_gt76g"]
 [ext_resource type="Texture2D" uid="uid://bfiv1dxdg5dns" path="res://Personagens_/tatu.png" id="21_pgqot"]
 [ext_resource type="Texture2D" uid="uid://bj5f41qhs3wmi" path="res://Personagens_/coelho.png" id="22_jhb3u"]
-[ext_resource type="Script" path="res://elisa.gd" id="23_1fr6y"]
+[ext_resource type="Script" uid="uid://bry2li3kdub7i" path="res://elisa.gd" id="23_1fr6y"]
 [ext_resource type="Texture2D" uid="uid://dg8aibfrdikvh" path="res://icones/assets_separados/tronco.png" id="23_37rib"]
-[ext_resource type="Script" path="res://fogo_2.gd" id="23_bjha6"]
+[ext_resource type="Script" uid="uid://brutyrong4n03" path="res://fogo_2.gd" id="23_bjha6"]
 [ext_resource type="Texture2D" uid="uid://us5xkv6eo02f" path="res://Personagens_/tucano.png" id="24_itiob"]
-[ext_resource type="Script" path="res://tucano.gd" id="27_2hxjc"]
+[ext_resource type="Script" uid="uid://cg248uyydyna4" path="res://tucano.gd" id="27_2hxjc"]
 [ext_resource type="AudioStream" uid="uid://bntdhy4sovkr" path="res://0703.MP3" id="29_mhoo8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
@@ -76,7 +76,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == \"Carlos\":
-		morrer()
+		vida -= 1
+		if vida <= 0:
+			morrer()
 
 
 func mostrar_tela_de_vitoria():
@@ -115,13 +117,6 @@ func _on_areafinal_body_entered(body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	var derrota = tela_de_derrota.instantiate()
 	add_child(derrota)
-
-
-func perder_vida():
-	vidas -= 1
-	hud.set_vidas(vidas)
-	if vidas <= 0:
-		morrer()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2bti"]
@@ -449,7 +444,8 @@ position = Vector2(463, 567)
 position = Vector2(-2449.5, -1174.5)
 shape = SubResource("RectangleShape2D_q6r6c")
 
-[node name="Hud" parent="." instance=ExtResource("7_p76gh")]
+[node name="Hud" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_p76gh")]
+player = NodePath("../Carlos")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2000, 2113)

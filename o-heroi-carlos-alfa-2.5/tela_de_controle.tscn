@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://l3xug1d3q1cj"]
 
 [ext_resource type="Texture2D" uid="uid://dblkfmcdumh5d" path="res://Tela/Tela_inicial_controles.png" id="1_311a2"]
-[ext_resource type="Script" path="res://tela_de_controle.gd" id="1_pakmm"]
+[ext_resource type="Script" uid="uid://b1hbhtixlso3e" path="res://tela_de_controle.gd" id="1_pakmm"]
 [ext_resource type="Texture2D" uid="uid://cq1wtiexiypkt" path="res://icones/fechar.png" id="2_vlqcj"]
 
 [node name="tela_de_controle" type="CanvasLayer"]

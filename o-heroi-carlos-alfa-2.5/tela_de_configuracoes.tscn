@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dxq0yotrx2ytg"]
 
-[ext_resource type="Script" path="res://tela_de_configuracoes.gd" id="1_crhxf"]
+[ext_resource type="Script" uid="uid://cfrixuj71056a" path="res://tela_de_configuracoes.gd" id="1_crhxf"]
 [ext_resource type="Texture2D" uid="uid://b2r7lci24s8f6" path="res://Tela/Tela_inicial_configuracoes.png" id="1_w53fy"]
 [ext_resource type="Texture2D" uid="uid://bcexjtl4fijwh" path="res://icones/controles.png" id="2_5tpbw"]
 [ext_resource type="Texture2D" uid="uid://c3oxqwni87qvv" path="res://icones/creditos.png" id="3_77vga"]
