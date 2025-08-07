@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b31lbn7aetu5r"]
+[gd_scene load_steps=11 format=3 uid="uid://b31lbn7aetu5r"]
 
 [ext_resource type="Texture2D" uid="uid://ulj4nduoji07" path="res://icones/coracao.png" id="1_b2f4i"]
 [ext_resource type="Texture2D" uid="uid://cj8hgy0arl4bb" path="res://icones/assets_separados/relogio.png" id="2_rftc2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b10nkiavt3rbo" path="res://icones/play.png" id="5_rftc2"]
 [ext_resource type="Texture2D" uid="uid://ritb8fw8qrx4" path="res://icones/menu.png" id="6_amv7k"]
 [ext_resource type="Texture2D" uid="uid://cj1w54272akh2" path="res://icones/assets_separados/animal.png" id="8_qs05v"]
+[ext_resource type="Texture2D" uid="uid://dtco3f32fv2mb" path="res://icones/assets_separados/moeda.png" id="9_g10ll"]
 
 [sub_resource type="GDScript" id="GDScript_1fv7p"]
 resource_name = "Hud"
@@ -27,7 +28,19 @@ var vidas = 3
 var tempo = preload(\"res://tela_de_derrota.tscn\")
 var is_paused = false
 var tempo_total = 180
+
+func _ready():
+	$pausar.pressed.connect(_on_pause_button_pressed)
+	$menu_de_pause/ContinueButton.pressed.connect(_on_continue_pressed)
+	$menu_de_pause/RestartButton.pressed.connect(_on_restart_pressed)
+	$menu_de_pause/QuitButton.pressed.connect(_on_quit_pressed)
+	$tempo/Timercontador.timeout.connect(_on_timer_contador_timeout)
+	tempo_total = 180
+	atualizar_label()
+	
 func _process(delta: float) -> void:
+	$Moedas/Label.text = str(player.moedas)
+	$HBoxContainer/animaislabel.text = str(player.animais)
 	vidas = player.vida
 	match vidas:
 		0:
@@ -46,14 +59,8 @@ func _process(delta: float) -> void:
 			coracoes[0].visible = true
 			coracoes[1].visible = true
 			coracoes[2].visible = true
-func _ready():
-	$pausar.pressed.connect(_on_pause_button_pressed)
-	$menu_de_pause/ContinueButton.pressed.connect(_on_continue_pressed)
-	$menu_de_pause/RestartButton.pressed.connect(_on_restart_pressed)
-	$menu_de_pause/QuitButton.pressed.connect(_on_quit_pressed)
-	$tempo/Timercontador.timeout.connect(_on_timer_contador_timeout)
-	tempo_total = 180
-	atualizar_label()
+
+
 
 func _on_pause_button_pressed():
 	is_paused = true
@@ -99,9 +106,9 @@ script = SubResource("GDScript_1fv7p")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -280.0
+offset_left = -405.0
 offset_top = 27.0
-offset_right = 187.0
+offset_right = 62.0
 offset_bottom = 158.0
 grow_horizontal = 0
 scale = Vector2(0.25, 0.25)
@@ -196,8 +203,8 @@ icon = ExtResource("6_amv7k")
 flat = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 1123.0
-offset_right = 1506.0
+offset_left = 982.0
+offset_right = 1421.0
 offset_bottom = 378.0
 scale = Vector2(0.25, 0.25)
 
@@ -208,6 +215,21 @@ texture = ExtResource("8_qs05v")
 [node name="animaislabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
-text = "1"
+text = "0"
+
+[node name="Moedas" type="HBoxContainer" parent="."]
+offset_left = 1122.0
+offset_right = 1527.0
+offset_bottom = 384.0
+scale = Vector2(0.284715, 0.25)
+
+[node name="TextureRect" type="TextureRect" parent="Moedas"]
+layout_mode = 2
+texture = ExtResource("9_g10ll")
+
+[node name="Label" type="Label" parent="Moedas"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "0"
 
 [connection signal="pressed" from="menu_de_pause/ContinueButton" to="." method="_on_continue_button_pressed"]
