@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://bdpngelq664cj"]
+[gd_scene load_steps=89 format=3 uid="uid://bdpngelq664cj"]
 
 [ext_resource type="Texture2D" uid="uid://qtv7r7jque7s" path="res://cenario_png_svg/pagina_1_pronto.png" id="1_j6xpk"]
 [ext_resource type="Texture2D" uid="uid://7ok2lkew0q2u" path="res://cenario_png_svg/pagina_2_pronto.png" id="2_k1emr"]
@@ -27,8 +27,11 @@
 [ext_resource type="Script" uid="uid://brutyrong4n03" path="res://fogo_2.gd" id="23_bjha6"]
 [ext_resource type="Texture2D" uid="uid://us5xkv6eo02f" path="res://Personagens_/tucano.png" id="24_itiob"]
 [ext_resource type="Script" uid="uid://cg248uyydyna4" path="res://tucano.gd" id="27_2hxjc"]
+[ext_resource type="Script" uid="uid://c5i4ht3bdrtmo" path="res://fogo_3.gd" id="28_ornx7"]
+[ext_resource type="Script" uid="uid://df5st1bpdiua1" path="res://fogo_4.gd" id="29_540hr"]
 [ext_resource type="Texture2D" uid="uid://dtco3f32fv2mb" path="res://icones/assets_separados/moeda.png" id="29_kq1c5"]
 [ext_resource type="AudioStream" uid="uid://bntdhy4sovkr" path="res://0703.MP3" id="29_mhoo8"]
+[ext_resource type="Script" uid="uid://cbq0hswfbfrth" path="res://fogo_5.gd" id="30_6ip5v"]
 [ext_resource type="Script" uid="uid://b17fgmqaud3x5" path="res://moeda_1.gd" id="30_ornx7"]
 [ext_resource type="Script" uid="uid://bkl1valnovy5k" path="res://moeda_2.gd" id="31_cnnru"]
 [ext_resource type="Script" uid="uid://cnbl8kfh1vj1k" path="res://moeda_3.gd" id="32_540hr"]
@@ -709,6 +712,7 @@ shape = SubResource("RectangleShape2D_24dk6")
 
 [node name="fogo3" type="CharacterBody2D" parent="." groups=["inimigo"]]
 position = Vector2(7961, 1895)
+script = ExtResource("28_ornx7")
 
 [node name="Sprite2D" type="Sprite2D" parent="fogo3"]
 position = Vector2(-4.76837e-07, 0)
@@ -727,6 +731,7 @@ shape = SubResource("RectangleShape2D_bjha6")
 
 [node name="fogo4" type="CharacterBody2D" parent="." groups=["inimigo"]]
 position = Vector2(8298, 1692)
+script = ExtResource("29_540hr")
 
 [node name="Sprite2D" type="Sprite2D" parent="fogo4"]
 scale = Vector2(0.782115, 0.818566)
@@ -744,6 +749,7 @@ shape = SubResource("RectangleShape2D_1fr6y")
 
 [node name="fogo5" type="CharacterBody2D" parent="." groups=["inimigo"]]
 position = Vector2(8616, 1525)
+script = ExtResource("30_6ip5v")
 
 [node name="Sprite2D" type="Sprite2D" parent="fogo5"]
 scale = Vector2(0.847607, 0.963045)
@@ -802,7 +808,7 @@ position = Vector2(0, -11.25)
 shape = SubResource("CircleShape2D_7plk7")
 
 [node name="Moeda4" type="Sprite2D" parent="."]
-position = Vector2(1837, 289)
+position = Vector2(9412, 1603)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("29_kq1c5")
 script = ExtResource("33_6ip5v")
