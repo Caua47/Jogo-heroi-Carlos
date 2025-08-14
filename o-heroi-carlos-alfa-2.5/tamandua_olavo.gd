@@ -1,6 +1,4 @@
 extends CharacterBody2D
-
-
 const SPEED = 300.0
 
 
@@ -13,8 +11,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(body):
 	if body.name == "Carlos":
-		body.animais += 2
+		body.animais += 1
 		queue_free()

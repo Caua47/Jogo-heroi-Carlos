@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b31lbn7aetu5r"]
+[gd_scene load_steps=12 format=3 uid="uid://b31lbn7aetu5r"]
 
 [ext_resource type="Texture2D" uid="uid://ulj4nduoji07" path="res://icones/coracao.png" id="1_b2f4i"]
 [ext_resource type="Texture2D" uid="uid://cj8hgy0arl4bb" path="res://icones/assets_separados/relogio.png" id="2_rftc2"]
 [ext_resource type="Texture2D" uid="uid://b7kjjmcn2eqoa" path="res://icones/assets_separados/pause.png" id="3_61f8s"]
+[ext_resource type="FontFile" uid="uid://bxwnk80nl6nn8" path="res://Luckiest_Guy/LuckiestGuy-Regular.ttf" id="3_gpiub"]
 [ext_resource type="Texture2D" uid="uid://cnnq47dcmj2rs" path="res://Tela/pause.png" id="4_g10ll"]
 [ext_resource type="Texture2D" uid="uid://tb1ntokeac2r" path="res://icones/replay.png" id="5_gpiub"]
 [ext_resource type="Texture2D" uid="uid://b10nkiavt3rbo" path="res://icones/play.png" id="5_rftc2"]
@@ -87,6 +88,7 @@ func _on_timer_contador_timeout():
 		atualizar_label()
 	else:
 		$tempo/Timercontador.stop()
+		get_tree().paused = false
 		mostrar_tela_derrota()
 
 func atualizar_label():
@@ -144,6 +146,7 @@ texture = ExtResource("2_rftc2")
 
 [node name="tempoLabel" type="Label" parent="tempo"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gpiub")
 theme_override_font_sizes/font_size = 100
 text = "03:00"
 
@@ -214,6 +217,7 @@ texture = ExtResource("8_qs05v")
 
 [node name="animaislabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gpiub")
 theme_override_font_sizes/font_size = 100
 text = "0"
 
@@ -229,6 +233,7 @@ texture = ExtResource("9_g10ll")
 
 [node name="Label" type="Label" parent="Moedas"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gpiub")
 theme_override_font_sizes/font_size = 100
 text = "0"
 

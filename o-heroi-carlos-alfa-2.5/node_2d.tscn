@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://bdpngelq664cj"]
+[gd_scene load_steps=97 format=3 uid="uid://bdpngelq664cj"]
 
 [ext_resource type="Texture2D" uid="uid://qtv7r7jque7s" path="res://cenario_png_svg/pagina_1_pronto.png" id="1_j6xpk"]
 [ext_resource type="Texture2D" uid="uid://7ok2lkew0q2u" path="res://cenario_png_svg/pagina_2_pronto.png" id="2_k1emr"]
@@ -11,8 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://de8vra85aq0ux" path="res://plataformas png/plataforma_flutuante.png" id="9_s1s84"]
 [ext_resource type="Texture2D" uid="uid://b3nxurxtpll2c" path="res://plataformas png/plataforma_chao.png" id="10_6ll2x"]
 [ext_resource type="Texture2D" uid="uid://x0xy4laryjvp" path="res://plataformas png/plataforma.png" id="11_bcfch"]
+[ext_resource type="Script" uid="uid://bmj0icsyilx4u" path="res://tamandua_olavo.gd" id="12_q5dlx"]
 [ext_resource type="Texture2D" uid="uid://dp34hnxuc678p" path="res://plataformas png/3_plataformas.png" id="12_ynwwy"]
 [ext_resource type="Script" uid="uid://bn3kglslm3e0n" path="res://area_2d.gd" id="13_am8ej"]
+[ext_resource type="Texture2D" uid="uid://dl2hxa1f58smi" path="res://Personagens_/tamandua.png" id="13_c4wnb"]
 [ext_resource type="Texture2D" uid="uid://l83s1d7a2ew" path="res://animacao_fogo/fogo_1.png" id="14_rjqkl"]
 [ext_resource type="Texture2D" uid="uid://gf2t1f6iku5g" path="res://animacao_fogo/fogo_2.png" id="15_fs4d3"]
 [ext_resource type="Texture2D" uid="uid://uwpmff6tyuhq" path="res://animacao_fogo/fogo_3.png" id="16_7vxoj"]
@@ -93,7 +95,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func mostrar_tela_de_vitoria():
 	var vitoria = tela_vitoria.instantiate()
 	add_child(vitoria)
-	get_tree().paused = true 
+	get_tree().paused = true
+
 
 func morrer():
 	var derrota = tela_de_derrota.instantiate()
@@ -198,8 +201,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ir8iy"]
-radius = 135.0
-height = 424.0
+radius = 124.0
+height = 326.0
 
 [sub_resource type="GDScript" id="GDScript_hqns4"]
 resource_name = "passaro_base"
@@ -231,57 +234,29 @@ size = Vector2(135, 133)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjqkl"]
 size = Vector2(249, 175)
 
-[sub_resource type="GDScript" id="GDScript_kdubu"]
-script/source = "extends CharacterBody2D
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaalf"]
+size = Vector2(227, 144.688)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebxd8"]
+size = Vector2(84.5758, 61.6208)
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tji8"]
+size = Vector2(119, 184)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2u7jv"]
+size = Vector2(138, 208)
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqtxb"]
+size = Vector2(269, 197)
 
-	move_and_slide()
-"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24dk6"]
+size = Vector2(374, 265)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
-size = Vector2(154, 275)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7plk7"]
+size = Vector2(70, 116)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
-size = Vector2(157, 53)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
-size = Vector2(606.896, 963.934)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
-size = Vector2(409.523, 764.286)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqns4"]
-size = Vector2(1666.67, 623.189)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0ka3"]
-size = Vector2(1663.77, 614.493)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7mo"]
-size = Vector2(1655.07, 620.29)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8wp"]
-size = Vector2(783.487, 256.881)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2bti"]
-size = Vector2(475.25, 165.138)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta5nu"]
-size = Vector2(1280.73, 352.294)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_flf07"]
-size = Vector2(1668.14, 614.363)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vxoj"]
-size = Vector2(350, 373)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbwgr"]
+size = Vector2(101, 158.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bjha6"]
 radius = 261.069
@@ -315,38 +290,33 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_gt76g"]
 radius = 277.007
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fs4d3"]
-size = Vector2(215, 2735)
+[sub_resource type="GDScript" id="GDScript_kdubu"]
+script/source = "extends CharacterBody2D
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ei405"]
-size = Vector2(187, 2719)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaalf"]
-size = Vector2(227, 144.688)
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebxd8"]
-size = Vector2(84.5758, 61.6208)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tji8"]
-size = Vector2(100, 178)
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2u7jv"]
-size = Vector2(130, 216)
+	move_and_slide()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
+size = Vector2(154, 275)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
+size = Vector2(157, 53)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7qhtw"]
 size = Vector2(128, 195)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gt76g"]
 size = Vector2(45.7657, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyog6"]
-size = Vector2(339.5, 84)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqtxb"]
-size = Vector2(269, 197)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_24dk6"]
-size = Vector2(374, 265)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pplhk"]
 size = Vector2(141, 241)
@@ -365,6 +335,57 @@ size = Vector2(148, 249.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hxjc"]
 size = Vector2(155, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(606.896, 963.934)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
+size = Vector2(409.523, 764.286)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqns4"]
+size = Vector2(1666.67, 623.189)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0ka3"]
+size = Vector2(1663.77, 614.493)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7mo"]
+size = Vector2(1655.07, 620.29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8wp"]
+size = Vector2(783.487, 256.881)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2bti"]
+size = Vector2(475.25, 165.138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta5nu"]
+size = Vector2(1280.73, 352.294)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flf07"]
+size = Vector2(1668.14, 614.363)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_540hr"]
+size = Vector2(1655.07, 617.392)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mj2a"]
+size = Vector2(1659.49, 612.903)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fshgd"]
+size = Vector2(1659.49, 609.319)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbrxf"]
+size = Vector2(1659.5, 612.903)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vxoj"]
+size = Vector2(350, 373)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fs4d3"]
+size = Vector2(215, 2735)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ei405"]
+size = Vector2(187, 2719)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyog6"]
+size = Vector2(339.5, 84)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q5dlx"]
 radius = 75.0104
@@ -406,12 +427,13 @@ position = Vector2(351, 2033)
 script = SubResource("GDScript_rj586")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Carlos"]
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_7vxoj")
 animation = &"Carlos"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Carlos"]
-position = Vector2(4, 9)
+position = Vector2(19, 34)
 shape = SubResource("CapsuleShape2D_ir8iy")
 
 [node name="Camera2D" type="Camera2D" parent="Carlos"]
@@ -424,27 +446,131 @@ limit_bottom = 2740
 editor_draw_limits = true
 
 [node name="Marker2D" type="Marker2D" parent="Carlos"]
-position = Vector2(176, -4)
+position = Vector2(157, 5)
 
-[node name="Passaro_azul_base" type="CharacterBody2D" parent="."]
+[node name="Passaro_Lia" type="CharacterBody2D" parent="."]
 position = Vector2(2030, 1716)
 script = SubResource("GDScript_hqns4")
 
-[node name="Sprite2D" type="Sprite2D" parent="Passaro_azul_base"]
+[node name="Sprite2D" type="Sprite2D" parent="Passaro_Lia"]
 position = Vector2(-26, 140)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_eo7g4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Passaro_azul_base"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Passaro_Lia"]
 position = Vector2(-37.5, 148.5)
 shape = SubResource("RectangleShape2D_k73cj")
 
-[node name="Area2D" type="Area2D" parent="Passaro_azul_base"]
+[node name="Area2D" type="Area2D" parent="Passaro_Lia"]
 position = Vector2(-36, 144)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Passaro_azul_base/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Passaro_Lia/Area2D"]
 position = Vector2(3.5, -17.5)
 shape = SubResource("RectangleShape2D_rjqkl")
+
+[node name="Tatu_Joseph" type="CharacterBody2D" parent="."]
+position = Vector2(2984, 2228)
+script = ExtResource("21_gt76g")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tatu_Joseph"]
+position = Vector2(1, -1)
+scale = Vector2(0.608312, 0.603518)
+texture = ExtResource("21_pgqot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tatu_Joseph"]
+position = Vector2(7.5, 29.6563)
+shape = SubResource("RectangleShape2D_oaalf")
+
+[node name="Area2D" type="Area2D" parent="Tatu_Joseph"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tatu_Joseph/Area2D"]
+position = Vector2(13.5, 27.5085)
+scale = Vector2(3.60623, 2.67739)
+shape = SubResource("RectangleShape2D_ebxd8")
+
+[node name="Familia_Coelhos" type="CharacterBody2D" parent="."]
+position = Vector2(3297, 1181)
+script = ExtResource("23_1fr6y")
+
+[node name="Joquebede" type="Sprite2D" parent="Familia_Coelhos"]
+position = Vector2(-28, 34)
+scale = Vector2(0.221, 0.207)
+texture = ExtResource("22_jhb3u")
+
+[node name="Arao" type="Sprite2D" parent="Familia_Coelhos"]
+position = Vector2(21, 73)
+scale = Vector2(0.146, 0.128)
+texture = ExtResource("22_jhb3u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Familia_Coelhos"]
+position = Vector2(-12.5, 44)
+shape = SubResource("RectangleShape2D_3tji8")
+
+[node name="Area2D" type="Area2D" parent="Familia_Coelhos"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Familia_Coelhos/Area2D"]
+position = Vector2(-17, 36)
+shape = SubResource("RectangleShape2D_2u7jv")
+
+[node name="Tucano_Rafael" type="CharacterBody2D" parent="."]
+position = Vector2(6358, 1655)
+script = ExtResource("27_2hxjc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tucano_Rafael"]
+position = Vector2(0, 2)
+scale = Vector2(0.602644, 0.591051)
+texture = ExtResource("24_itiob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tucano_Rafael"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_kqtxb")
+
+[node name="Area2D" type="Area2D" parent="Tucano_Rafael"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tucano_Rafael/Area2D"]
+position = Vector2(13, -25.5)
+shape = SubResource("RectangleShape2D_24dk6")
+
+[node name="Tamandua_Olavo" type="CharacterBody2D" parent="."]
+position = Vector2(12256, 876)
+script = ExtResource("12_q5dlx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tamandua_Olavo"]
+position = Vector2(-2, -17)
+scale = Vector2(0.21, 0.208)
+texture = ExtResource("13_c4wnb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tamandua_Olavo"]
+position = Vector2(-11, 5)
+shape = SubResource("RectangleShape2D_7plk7")
+
+[node name="Area2D" type="Area2D" parent="Tamandua_Olavo"]
+position = Vector2(-2, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tamandua_Olavo/Area2D"]
+position = Vector2(-8.5, -8.75)
+shape = SubResource("RectangleShape2D_fbwgr")
+
+[node name="fogo_inicial" type="CharacterBody2D" parent="." groups=["inimigo"]]
+position = Vector2(0, -0.00012207)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo_inicial"]
+position = Vector2(1186, 2052)
+shape = SubResource("CircleShape2D_bjha6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="fogo_inicial"]
+position = Vector2(1178, 2015)
+scale = Vector2(0.484574, 0.40563)
+sprite_frames = SubResource("SpriteFrames_bjha6")
+animation = &"Fogo"
+autoplay = "Fogo"
+
+[node name="Area2D2" type="Area2D" parent="fogo_inicial"]
+position = Vector2(1170, 2074)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo_inicial/Area2D2"]
+position = Vector2(15, -21)
+shape = SubResource("CircleShape2D_gt76g")
 
 [node name="Fogo1" type="CharacterBody2D" parent="." groups=["inimigo"]]
 position = Vector2(5729, 2678)
@@ -465,6 +591,81 @@ position = Vector2(463, 567)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fogo1/Area2D"]
 position = Vector2(-2449.5, -1174.5)
 shape = SubResource("RectangleShape2D_q6r6c")
+
+[node name="Fogo2" type="CharacterBody2D" parent="." groups=["inimigo"]]
+position = Vector2(2878, 1278)
+script = ExtResource("23_bjha6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fogo2"]
+position = Vector2(-1, 0)
+scale = Vector2(0.763224, 0.747551)
+texture = ExtResource("6_1cfq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fogo2"]
+position = Vector2(-11, 27.5)
+shape = SubResource("RectangleShape2D_7qhtw")
+
+[node name="Area2D" type="Area2D" parent="Fogo2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fogo2/Area2D"]
+position = Vector2(-11.0001, -51)
+scale = Vector2(2.84055, 1)
+shape = SubResource("RectangleShape2D_gt76g")
+
+[node name="fogo3" type="CharacterBody2D" parent="." groups=["inimigo"]]
+position = Vector2(7961, 1895)
+script = ExtResource("28_ornx7")
+
+[node name="Sprite2D" type="Sprite2D" parent="fogo3"]
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(0.858942, 0.871327)
+texture = ExtResource("6_1cfq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo3"]
+position = Vector2(-12.5, 21.5)
+shape = SubResource("RectangleShape2D_pplhk")
+
+[node name="Area2D" type="Area2D" parent="fogo3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo3/Area2D"]
+position = Vector2(-12.5, -65.5)
+shape = SubResource("RectangleShape2D_bjha6")
+
+[node name="fogo4" type="CharacterBody2D" parent="." groups=["inimigo"]]
+position = Vector2(8298, 1692)
+script = ExtResource("29_540hr")
+
+[node name="Sprite2D" type="Sprite2D" parent="fogo4"]
+scale = Vector2(0.782115, 0.818566)
+texture = ExtResource("6_1cfq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo4"]
+position = Vector2(-5, 16)
+shape = SubResource("RectangleShape2D_gep2n")
+
+[node name="Area2D" type="Area2D" parent="fogo4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo4/Area2D"]
+position = Vector2(-4.5, -72)
+shape = SubResource("RectangleShape2D_1fr6y")
+
+[node name="fogo5" type="CharacterBody2D" parent="." groups=["inimigo"]]
+position = Vector2(8616, 1525)
+script = ExtResource("30_6ip5v")
+
+[node name="Sprite2D" type="Sprite2D" parent="fogo5"]
+scale = Vector2(0.847607, 0.963045)
+texture = ExtResource("6_1cfq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo5"]
+position = Vector2(-11, 13.75)
+shape = SubResource("RectangleShape2D_ounvi")
+
+[node name="Area2D" type="Area2D" parent="fogo5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo5/Area2D"]
+position = Vector2(-10.5, -78.5)
+shape = SubResource("RectangleShape2D_2hxjc")
 
 [node name="Hud" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_p76gh")]
 player = NodePath("../Carlos")
@@ -527,7 +728,7 @@ position = Vector2(17.3916, 173.913)
 shape = SubResource("RectangleShape2D_x0ka3")
 
 [node name="Obstaculo6" type="Sprite2D" parent="."]
-position = Vector2(6232, 1818)
+position = Vector2(6238, 1810)
 scale = Vector2(0.345, 0.345)
 texture = ExtResource("11_bcfch")
 
@@ -573,6 +774,53 @@ texture = ExtResource("11_bcfch")
 position = Vector2(16.1445, 168.95)
 shape = SubResource("RectangleShape2D_flf07")
 
+[node name="Obstaculo9" type="Sprite2D" parent="."]
+position = Vector2(10256, 1470)
+scale = Vector2(0.345, 0.345)
+texture = ExtResource("11_bcfch")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Obstaculo9" groups=["parede"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo9/StaticBody2D"]
+position = Vector2(15.9414, 172.463)
+shape = SubResource("RectangleShape2D_540hr")
+
+[node name="Obstaculo10" type="Sprite2D" parent="."]
+position = Vector2(11108, 1856)
+scale = Vector2(0.279, 0.279)
+texture = ExtResource("11_bcfch")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Obstaculo10" groups=["parede"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo10/StaticBody2D"]
+position = Vector2(16.1289, 170.251)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_7mj2a")
+
+[node name="Obstaculo11" type="Sprite2D" parent="."]
+position = Vector2(11225, 1197)
+scale = Vector2(0.279, 0.279)
+texture = ExtResource("11_bcfch")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Obstaculo11" groups=["parede"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo11/StaticBody2D"]
+position = Vector2(16.125, 168.459)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_fshgd")
+
+[node name="Obstaculo12" type="Sprite2D" parent="."]
+position = Vector2(12083, 978)
+scale = Vector2(0.279, 0.279)
+texture = ExtResource("11_bcfch")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Obstaculo12" groups=["parede"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo12/StaticBody2D"]
+position = Vector2(16.125, 170.251)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_lbrxf")
+
 [node name="Areafinal" type="Area2D" parent="." groups=["Vitoria"]]
 position = Vector2(14132, 2149)
 script = ExtResource("13_am8ej")
@@ -585,27 +833,6 @@ shape = SubResource("RectangleShape2D_7vxoj")
 wait_time = 180.0
 one_shot = true
 autostart = true
-
-[node name="fogo_inicial" type="CharacterBody2D" parent="." groups=["inimigo"]]
-position = Vector2(0, -0.00012207)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo_inicial"]
-position = Vector2(1186, 2052)
-shape = SubResource("CircleShape2D_bjha6")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="fogo_inicial"]
-position = Vector2(1178, 2015)
-scale = Vector2(0.484574, 0.40563)
-sprite_frames = SubResource("SpriteFrames_bjha6")
-animation = &"Fogo"
-autoplay = "Fogo"
-
-[node name="Area2D2" type="Area2D" parent="fogo_inicial"]
-position = Vector2(1170, 2074)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo_inicial/Area2D2"]
-position = Vector2(15, -21)
-shape = SubResource("CircleShape2D_gt76g")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["parede"]]
 position = Vector2(-143, 1430)
@@ -621,65 +848,6 @@ position = Vector2(14733, 1186)
 position = Vector2(-103.5, 201.5)
 shape = SubResource("RectangleShape2D_ei405")
 
-[node name="porradotatu" type="CharacterBody2D" parent="."]
-position = Vector2(2984, 2228)
-script = ExtResource("21_gt76g")
-
-[node name="Sprite2D" type="Sprite2D" parent="porradotatu"]
-position = Vector2(1, -1)
-scale = Vector2(0.608312, 0.603518)
-texture = ExtResource("21_pgqot")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="porradotatu"]
-position = Vector2(7.5, 29.6563)
-shape = SubResource("RectangleShape2D_oaalf")
-
-[node name="Area2D" type="Area2D" parent="porradotatu"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="porradotatu/Area2D"]
-position = Vector2(13.5, 27.5085)
-scale = Vector2(3.60623, 2.67739)
-shape = SubResource("RectangleShape2D_ebxd8")
-
-[node name="elisa" type="CharacterBody2D" parent="."]
-position = Vector2(3297, 1181)
-script = ExtResource("23_1fr6y")
-
-[node name="Sprite2D" type="Sprite2D" parent="elisa"]
-position = Vector2(1, 0)
-scale = Vector2(0.280856, 0.263134)
-texture = ExtResource("22_jhb3u")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="elisa"]
-position = Vector2(-3, 41)
-shape = SubResource("RectangleShape2D_3tji8")
-
-[node name="Area2D" type="Area2D" parent="elisa"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="elisa/Area2D"]
-position = Vector2(3, 21)
-shape = SubResource("RectangleShape2D_2u7jv")
-
-[node name="Fogo2" type="CharacterBody2D" parent="." groups=["inimigo"]]
-position = Vector2(2878, 1278)
-script = ExtResource("23_bjha6")
-
-[node name="Sprite2D" type="Sprite2D" parent="Fogo2"]
-position = Vector2(-1, 0)
-scale = Vector2(0.763224, 0.747551)
-texture = ExtResource("6_1cfq1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fogo2"]
-position = Vector2(-11, 27.5)
-shape = SubResource("RectangleShape2D_7qhtw")
-
-[node name="Area2D" type="Area2D" parent="Fogo2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fogo2/Area2D"]
-position = Vector2(-11.0001, -51)
-scale = Vector2(2.84055, 1)
-shape = SubResource("RectangleShape2D_gt76g")
-
 [node name="tronco" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="tronco"]
@@ -690,80 +858,6 @@ texture = ExtResource("23_37rib")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tronco"]
 position = Vector2(3289, 1363)
 shape = SubResource("RectangleShape2D_eyog6")
-
-[node name="tucano" type="CharacterBody2D" parent="."]
-position = Vector2(6358, 1655)
-script = ExtResource("27_2hxjc")
-
-[node name="Sprite2D" type="Sprite2D" parent="tucano"]
-position = Vector2(0, 2)
-scale = Vector2(0.602644, 0.591051)
-texture = ExtResource("24_itiob")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tucano"]
-position = Vector2(0, 5.5)
-shape = SubResource("RectangleShape2D_kqtxb")
-
-[node name="Area2D" type="Area2D" parent="tucano"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tucano/Area2D"]
-position = Vector2(13, -25.5)
-shape = SubResource("RectangleShape2D_24dk6")
-
-[node name="fogo3" type="CharacterBody2D" parent="." groups=["inimigo"]]
-position = Vector2(7961, 1895)
-script = ExtResource("28_ornx7")
-
-[node name="Sprite2D" type="Sprite2D" parent="fogo3"]
-position = Vector2(-4.76837e-07, 0)
-scale = Vector2(0.858942, 0.871327)
-texture = ExtResource("6_1cfq1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo3"]
-position = Vector2(-12.5, 21.5)
-shape = SubResource("RectangleShape2D_pplhk")
-
-[node name="Area2D" type="Area2D" parent="fogo3"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo3/Area2D"]
-position = Vector2(-12.5, -65.5)
-shape = SubResource("RectangleShape2D_bjha6")
-
-[node name="fogo4" type="CharacterBody2D" parent="." groups=["inimigo"]]
-position = Vector2(8298, 1692)
-script = ExtResource("29_540hr")
-
-[node name="Sprite2D" type="Sprite2D" parent="fogo4"]
-scale = Vector2(0.782115, 0.818566)
-texture = ExtResource("6_1cfq1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo4"]
-position = Vector2(-5, 16)
-shape = SubResource("RectangleShape2D_gep2n")
-
-[node name="Area2D" type="Area2D" parent="fogo4"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo4/Area2D"]
-position = Vector2(-4.5, -72)
-shape = SubResource("RectangleShape2D_1fr6y")
-
-[node name="fogo5" type="CharacterBody2D" parent="." groups=["inimigo"]]
-position = Vector2(8616, 1525)
-script = ExtResource("30_6ip5v")
-
-[node name="Sprite2D" type="Sprite2D" parent="fogo5"]
-scale = Vector2(0.847607, 0.963045)
-texture = ExtResource("6_1cfq1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo5"]
-position = Vector2(-11, 13.75)
-shape = SubResource("RectangleShape2D_ounvi")
-
-[node name="Area2D" type="Area2D" parent="fogo5"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fogo5/Area2D"]
-position = Vector2(-10.5, -78.5)
-shape = SubResource("RectangleShape2D_2hxjc")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_mhoo8")
@@ -819,19 +913,20 @@ script = ExtResource("33_6ip5v")
 position = Vector2(0, -11.25)
 shape = SubResource("CircleShape2D_fbwgr")
 
-[connection signal="body_entered" from="Passaro_azul_base/Area2D" to="Passaro_azul_base" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Fogo1/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_areafinal_body_entered"]
-[connection signal="timeout" from="Timer" to="Carlos" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Passaro_Lia/Area2D" to="Passaro_Lia" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Tatu_Joseph/Area2D" to="Tatu_Joseph" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Familia_Coelhos/Area2D" to="Familia_Coelhos" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Tucano_Rafael/Area2D" to="Tucano_Rafael" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Tamandua_Olavo/Area2D" to="Tamandua_Olavo" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="fogo_inicial/Area2D2" to="Carlos" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="porradotatu/Area2D" to="porradotatu" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="elisa/Area2D" to="elisa" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Fogo1/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Fogo2/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="tucano/Area2D" to="tucano" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="fogo3/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="fogo4/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="fogo5/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_areafinal_body_entered"]
+[connection signal="timeout" from="Timer" to="Carlos" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Moeda1/Area2D" to="Moeda1" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Moeda2/Area2D" to="Moeda2" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Moeda3/Area2D" to="Moeda3" method="_on_area_2d_body_entered"]
