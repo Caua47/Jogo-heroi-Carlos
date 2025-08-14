@@ -1,9 +1,10 @@
-[gd_scene load_steps=97 format=3 uid="uid://bdpngelq664cj"]
+[gd_scene load_steps=107 format=3 uid="uid://bdpngelq664cj"]
 
 [ext_resource type="Texture2D" uid="uid://qtv7r7jque7s" path="res://cenario_png_svg/pagina_1_pronto.png" id="1_j6xpk"]
 [ext_resource type="Texture2D" uid="uid://7ok2lkew0q2u" path="res://cenario_png_svg/pagina_2_pronto.png" id="2_k1emr"]
 [ext_resource type="Texture2D" uid="uid://bxqnwucbturgc" path="res://cenario_png_svg/pagina_3_pronto.png" id="3_kw8ga"]
 [ext_resource type="Texture2D" uid="uid://dtnn78nk6ubfg" path="res://Personagens_/png.png" id="4_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://blxc0iej22t61" path="res://Personagens_/animacaopulo2 (1).png" id="5_c4wnb"]
 [ext_resource type="Texture2D" uid="uid://if03yoxggvv3" path="res://Personagens_/passarinho_azul.png" id="5_eo7g4"]
 [ext_resource type="Texture2D" uid="uid://dolx2mf5pdl5c" path="res://Personagens_/foguinho_com_sombra.png" id="6_1cfq1"]
 [ext_resource type="PackedScene" uid="uid://b31lbn7aetu5r" path="res://hud.tscn" id="7_p76gh"]
@@ -38,6 +39,8 @@
 [ext_resource type="Script" uid="uid://bkl1valnovy5k" path="res://moeda_2.gd" id="31_cnnru"]
 [ext_resource type="Script" uid="uid://cnbl8kfh1vj1k" path="res://moeda_3.gd" id="32_540hr"]
 [ext_resource type="Script" uid="uid://dxe1r4gs8oc3q" path="res://moeda_4.gd" id="33_6ip5v"]
+[ext_resource type="Script" uid="uid://ctp0rbargg6p6" path="res://FogoBoss.gd" id="40_fbwgr"]
+[ext_resource type="Texture2D" uid="uid://ci67fkfd8tuxv" path="res://icones/assets_separados/foguinho_sem_sombra_svg.png" id="41_7mj2a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
 size = Vector2(14515, 402)
@@ -65,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed(\"ui_up\") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+		$AnimatedSprite2D.play(\"pular\")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -163,6 +166,26 @@ region = Rect2(3000, 0, 500, 500)
 atlas = ExtResource("4_0h7mo")
 region = Rect2(500, 0, 500, 500)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7plk7"]
+atlas = ExtResource("5_c4wnb")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbwgr"]
+atlas = ExtResource("5_c4wnb")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mj2a"]
+atlas = ExtResource("5_c4wnb")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fshgd"]
+atlas = ExtResource("5_c4wnb")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbrxf"]
+atlas = ExtResource("5_c4wnb")
+region = Rect2(2000, 0, 500, 500)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7vxoj"]
 animations = [{
 "frames": [{
@@ -198,6 +221,26 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7plk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbwgr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mj2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fshgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbrxf")
+}],
+"loop": true,
+"name": &"pular",
+"speed": 3.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ir8iy"]
@@ -399,6 +442,12 @@ radius = 75.1665
 [sub_resource type="CircleShape2D" id="CircleShape2D_fbwgr"]
 radius = 74.8021
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fshgd"]
+radius = 520.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lbrxf"]
+radius = 571.224
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
@@ -429,7 +478,7 @@ script = SubResource("GDScript_rj586")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Carlos"]
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_7vxoj")
-animation = &"Carlos"
+animation = &"pular"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Carlos"]
@@ -794,7 +843,6 @@ texture = ExtResource("11_bcfch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo10/StaticBody2D"]
 position = Vector2(16.1289, 170.251)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7mj2a")
 
 [node name="Obstaculo11" type="Sprite2D" parent="."]
@@ -806,7 +854,6 @@ texture = ExtResource("11_bcfch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo11/StaticBody2D"]
 position = Vector2(16.125, 168.459)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_fshgd")
 
 [node name="Obstaculo12" type="Sprite2D" parent="."]
@@ -818,7 +865,6 @@ texture = ExtResource("11_bcfch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo12/StaticBody2D"]
 position = Vector2(16.125, 170.251)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_lbrxf")
 
 [node name="Areafinal" type="Area2D" parent="." groups=["Vitoria"]]
@@ -913,6 +959,25 @@ script = ExtResource("33_6ip5v")
 position = Vector2(0, -11.25)
 shape = SubResource("CircleShape2D_fbwgr")
 
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["inimigo"]]
+position = Vector2(13094, 1818)
+script = ExtResource("40_fbwgr")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(100, -217)
+scale = Vector2(1.48992, 1.49466)
+texture = ExtResource("41_7mj2a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(129, -38)
+shape = SubResource("CircleShape2D_fshgd")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+position = Vector2(145, -50)
+shape = SubResource("CircleShape2D_lbrxf")
+
 [connection signal="body_entered" from="Passaro_Lia/Area2D" to="Passaro_Lia" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Tatu_Joseph/Area2D" to="Tatu_Joseph" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Familia_Coelhos/Area2D" to="Familia_Coelhos" method="_on_area_2d_body_entered"]
@@ -931,3 +996,4 @@ shape = SubResource("CircleShape2D_fbwgr")
 [connection signal="body_entered" from="Moeda2/Area2D" to="Moeda2" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Moeda3/Area2D" to="Moeda3" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Moeda4/Area2D" to="Moeda4" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
