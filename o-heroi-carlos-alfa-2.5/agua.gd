@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 	$Sprite2D.flip_h = dir < 0
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 
 
 func _on_body_entered(body: Node2D) -> void:

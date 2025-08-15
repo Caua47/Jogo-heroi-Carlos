@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://6m36hrtt3qd6"]
+
+[ext_resource type="Script" uid="uid://bpppj3wdu1423" path="res://balainimigo.gd" id="1_ccioh"]
+[ext_resource type="Texture2D" uid="uid://d4fmxkplmvrcm" path="res://icones/assets_separados/fogo tiro.png" id="1_gawp0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccioh"]
+radius = 32.0
+height = 68.0
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ccioh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(97, 103)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_gawp0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(114, 132)
+shape = SubResource("CapsuleShape2D_ccioh")

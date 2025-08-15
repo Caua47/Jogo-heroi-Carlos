@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://bdpngelq664cj"]
+[gd_scene load_steps=113 format=3 uid="uid://bdpngelq664cj"]
 
 [ext_resource type="Texture2D" uid="uid://qtv7r7jque7s" path="res://cenario_png_svg/pagina_1_pronto.png" id="1_j6xpk"]
 [ext_resource type="Texture2D" uid="uid://7ok2lkew0q2u" path="res://cenario_png_svg/pagina_2_pronto.png" id="2_k1emr"]
@@ -41,6 +41,9 @@
 [ext_resource type="Script" uid="uid://dxe1r4gs8oc3q" path="res://moeda_4.gd" id="33_6ip5v"]
 [ext_resource type="Script" uid="uid://ctp0rbargg6p6" path="res://FogoBoss.gd" id="40_fbwgr"]
 [ext_resource type="Texture2D" uid="uid://ci67fkfd8tuxv" path="res://icones/assets_separados/foguinho_sem_sombra_svg.png" id="41_7mj2a"]
+[ext_resource type="Script" uid="uid://cda7v4d1531gs" path="res://moeda_5.gd" id="42_7mj2a"]
+[ext_resource type="Script" uid="uid://iwnq2ouncdja" path="res://sprite_2d.gd" id="43_lbrxf"]
+[ext_resource type="Script" uid="uid://b6osjr217vvyy" path="res://moeda_7.gd" id="44_xjt7e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
 size = Vector2(14515, 402)
@@ -124,7 +127,7 @@ func take_damage():
 
 
 func _on_areafinal_body_entered(body: Node2D) -> void:
-	if body.name == \"Carlos\":
+	if body.name == \"Carlos\" and moedas == 7:
 		get_tree().paused = false
 		mostrar_tela_de_vitoria()
 
@@ -447,6 +450,15 @@ radius = 520.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lbrxf"]
 radius = 571.224
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7mj2a"]
+radius = 80.513
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xo8l"]
+radius = 81.6193
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xfyss"]
+radius = 85.9513
 
 [node name="Node2D" type="Node2D"]
 
@@ -978,6 +990,42 @@ shape = SubResource("CircleShape2D_fshgd")
 position = Vector2(145, -50)
 shape = SubResource("CircleShape2D_lbrxf")
 
+[node name="moeda5" type="Sprite2D" parent="."]
+position = Vector2(10263, 1353)
+scale = Vector2(0.832481, 0.901042)
+texture = ExtResource("29_kq1c5")
+script = ExtResource("42_7mj2a")
+
+[node name="Area2D" type="Area2D" parent="moeda5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moeda5/Area2D"]
+position = Vector2(-4.80492, -13.3179)
+shape = SubResource("CircleShape2D_7mj2a")
+
+[node name="moeda6" type="Sprite2D" parent="."]
+position = Vector2(11217, 1099)
+scale = Vector2(0.758312, 0.851563)
+texture = ExtResource("29_kq1c5")
+script = ExtResource("43_lbrxf")
+
+[node name="Area2D" type="Area2D" parent="moeda6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moeda6/Area2D"]
+position = Vector2(0, -10.569)
+shape = SubResource("CircleShape2D_0xo8l")
+
+[node name="moeda7" type="Sprite2D" parent="."]
+position = Vector2(11114, 1757)
+scale = Vector2(0.796675, 0.848958)
+texture = ExtResource("29_kq1c5")
+script = ExtResource("44_xjt7e")
+
+[node name="Area2D" type="Area2D" parent="moeda7"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moeda7/Area2D"]
+position = Vector2(2.51043, -9.42346)
+shape = SubResource("CircleShape2D_xfyss")
+
 [connection signal="body_entered" from="Passaro_Lia/Area2D" to="Passaro_Lia" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Tatu_Joseph/Area2D" to="Tatu_Joseph" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Familia_Coelhos/Area2D" to="Familia_Coelhos" method="_on_area_2d_body_entered"]
@@ -989,11 +1037,14 @@ shape = SubResource("CircleShape2D_lbrxf")
 [connection signal="body_entered" from="fogo3/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="fogo4/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="fogo5/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_areafinal_body_entered"]
+[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="Carlos" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Moeda1/Area2D" to="Moeda1" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Moeda2/Area2D" to="Moeda2" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Moeda3/Area2D" to="Moeda3" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Moeda4/Area2D" to="Moeda4" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="moeda5/Area2D" to="moeda5" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="moeda6/Area2D" to="moeda6" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="moeda7/Area2D" to="moeda7" method="_on_area_2d_body_entered"]
