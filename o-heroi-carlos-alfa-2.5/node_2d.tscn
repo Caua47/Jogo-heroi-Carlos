@@ -129,6 +129,7 @@ func take_damage():
 func _on_areafinal_body_entered(body: Node2D) -> void:
 	if body.name == \"Carlos\" and moedas == 7:
 		get_tree().paused = false
+		hud.visible = false
 		mostrar_tela_de_vitoria()
 
 
@@ -483,7 +484,7 @@ position = Vector2(7783, 2534)
 position = Vector2(-507.5, 3)
 shape = SubResource("RectangleShape2D_d21ai")
 
-[node name="Carlos" type="CharacterBody2D" parent="."]
+[node name="Carlos" type="CharacterBody2D" parent="." groups=["Carlos"]]
 position = Vector2(351, 2033)
 script = SubResource("GDScript_rj586")
 
@@ -971,24 +972,30 @@ script = ExtResource("33_6ip5v")
 position = Vector2(0, -11.25)
 shape = SubResource("CircleShape2D_fbwgr")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["inimigo"]]
+[node name="boss" type="CharacterBody2D" parent="." groups=["inimigo"]]
 position = Vector2(13094, 1818)
 script = ExtResource("40_fbwgr")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="boss"]
 position = Vector2(100, -217)
 scale = Vector2(1.48992, 1.49466)
 texture = ExtResource("41_7mj2a")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boss"]
 position = Vector2(129, -38)
 shape = SubResource("CircleShape2D_fshgd")
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+[node name="Area2D" type="Area2D" parent="boss"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boss/Area2D"]
 position = Vector2(145, -50)
 shape = SubResource("CircleShape2D_lbrxf")
+
+[node name="saidadabala" type="Marker2D" parent="boss"]
+position = Vector2(-31, 247)
+
+[node name="Timer" type="Timer" parent="boss"]
+autostart = true
 
 [node name="moeda5" type="Sprite2D" parent="."]
 position = Vector2(10263, 1353)
@@ -1037,14 +1044,15 @@ shape = SubResource("CircleShape2D_xfyss")
 [connection signal="body_entered" from="fogo3/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="fogo4/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="fogo5/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_areafinal_body_entered"]
+[connection signal="body_entered" from="Areafinal" to="Carlos" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="Carlos" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Moeda1/Area2D" to="Moeda1" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Moeda2/Area2D" to="Moeda2" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Moeda3/Area2D" to="Moeda3" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Moeda4/Area2D" to="Moeda4" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="CharacterBody2D/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="boss/Area2D" to="Carlos" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="boss/Timer" to="boss" method="_on_timer_timeout"]
 [connection signal="body_entered" from="moeda5/Area2D" to="moeda5" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="moeda6/Area2D" to="moeda6" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="moeda7/Area2D" to="moeda7" method="_on_area_2d_body_entered"]
