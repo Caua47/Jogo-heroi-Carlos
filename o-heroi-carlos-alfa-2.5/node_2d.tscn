@@ -995,6 +995,7 @@ shape = SubResource("CircleShape2D_lbrxf")
 position = Vector2(-31, 247)
 
 [node name="Timer" type="Timer" parent="boss"]
+wait_time = 3.942
 autostart = true
 
 [node name="moeda5" type="Sprite2D" parent="."]
