@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://t5mf3dt5v4yp"]
+[gd_scene load_steps=7 format=3 uid="uid://t5mf3dt5v4yp"]
 
 [ext_resource type="Script" uid="uid://bm4ipoe8ypi5v" path="res://tela_de_inicio.gd" id="1_o5o8s"]
 [ext_resource type="Texture2D" uid="uid://b3iwle7eidffw" path="res://Tela/Tela inicial.png" id="2_8kjss"]
 [ext_resource type="Texture2D" uid="uid://djg4t1gxtrsxk" path="res://icones/jogar.png" id="3_v4bfa"]
 [ext_resource type="Texture2D" uid="uid://daidfyrgudn3h" path="res://icones/configuracoes.png" id="4_saulj"]
 [ext_resource type="Texture2D" uid="uid://cq1wtiexiypkt" path="res://icones/fechar.png" id="5_xnjbe"]
+[ext_resource type="Texture2D" uid="uid://b30buwaqvxxn0" path="res://icones/hiders.png" id="6_8kjss"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_o5o8s")
@@ -47,3 +48,11 @@ offset_right = 1263.0
 offset_bottom = 92.0
 icon = ExtResource("5_xnjbe")
 flat = true
+
+[node name="TextureRect2" type="TextureRect" parent="tela_de_inicio"]
+layout_mode = 0
+offset_left = 1053.0
+offset_top = 617.0
+offset_right = 1253.0
+offset_bottom = 702.0
+texture = ExtResource("6_8kjss")
