@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b31lbn7aetu5r"]
+[gd_scene format=3 uid="uid://b31lbn7aetu5r"]
 
 [ext_resource type="Texture2D" uid="uid://ulj4nduoji07" path="res://icones/coracao.png" id="1_b2f4i"]
 [ext_resource type="Texture2D" uid="uid://cj8hgy0arl4bb" path="res://icones/assets_separados/relogio.png" id="2_rftc2"]
@@ -101,10 +101,10 @@ func mostrar_tela_derrota():
 	get_tree().change_scene_to_file(\"res://tela_de_derrota.tscn\")
 "
 
-[node name="Hud" type="CanvasLayer"]
+[node name="Hud" type="CanvasLayer" unique_id=761489231]
 script = SubResource("GDScript_1fv7p")
 
-[node name="Vida 1" type="HBoxContainer" parent="."]
+[node name="Vida 1" type="HBoxContainer" parent="." unique_id=125895357]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -117,20 +117,20 @@ scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="coracao1" type="TextureRect" parent="Vida 1"]
+[node name="coracao1" type="TextureRect" parent="Vida 1" unique_id=906873718]
 layout_mode = 2
 texture = ExtResource("1_b2f4i")
 stretch_mode = 4
 
-[node name="coraca02" type="TextureRect" parent="Vida 1"]
+[node name="coraca02" type="TextureRect" parent="Vida 1" unique_id=1910890220]
 layout_mode = 2
 texture = ExtResource("1_b2f4i")
 
-[node name="coracao3" type="TextureRect" parent="Vida 1"]
+[node name="coracao3" type="TextureRect" parent="Vida 1" unique_id=1055185258]
 layout_mode = 2
 texture = ExtResource("1_b2f4i")
 
-[node name="tempo" type="HBoxContainer" parent="."]
+[node name="tempo" type="HBoxContainer" parent="." unique_id=493585464]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -140,42 +140,41 @@ offset_bottom = 393.0
 grow_horizontal = 2
 scale = Vector2(0.25, 0.25)
 
-[node name="TextureRect" type="TextureRect" parent="tempo"]
+[node name="TextureRect" type="TextureRect" parent="tempo" unique_id=1785084636]
 layout_mode = 2
 texture = ExtResource("2_rftc2")
 
-[node name="tempoLabel" type="Label" parent="tempo"]
+[node name="tempoLabel" type="Label" parent="tempo" unique_id=1690575684]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gpiub")
 theme_override_font_sizes/font_size = 100
 text = "03:00"
 
-[node name="Timercontador" type="Timer" parent="tempo"]
+[node name="Timercontador" type="Timer" parent="tempo" unique_id=876073269]
 autostart = true
 
-[node name="pausar" type="Button" parent="."]
+[node name="pausar" type="Button" parent="." unique_id=1907827818]
 offset_right = 427.0
 offset_bottom = 403.0
 scale = Vector2(0.25, 0.25)
 icon = ExtResource("3_61f8s")
 flat = true
 
-[node name="menu_de_pause" type="Control" parent="."]
+[node name="menu_de_pause" type="Control" parent="." unique_id=1348942442]
 process_mode = 1
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="imagem_fundo" type="TextureRect" parent="menu_de_pause"]
+[node name="imagem_fundo" type="TextureRect" parent="menu_de_pause" unique_id=458241698]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_g10ll")
 stretch_mode = 4
 
-[node name="ContinueButton" type="Button" parent="menu_de_pause"]
+[node name="ContinueButton" type="Button" parent="menu_de_pause" unique_id=570438097]
 process_mode = 3
 layout_mode = 0
 offset_left = 459.0
@@ -185,7 +184,7 @@ offset_bottom = 478.0
 icon = ExtResource("5_rftc2")
 flat = true
 
-[node name="RestartButton" type="Button" parent="menu_de_pause"]
+[node name="RestartButton" type="Button" parent="menu_de_pause" unique_id=1180407408]
 process_mode = 3
 layout_mode = 0
 offset_left = 734.0
@@ -195,7 +194,7 @@ offset_bottom = 479.0
 icon = ExtResource("5_gpiub")
 flat = true
 
-[node name="QuitButton" type="Button" parent="menu_de_pause"]
+[node name="QuitButton" type="Button" parent="menu_de_pause" unique_id=1797713830]
 process_mode = 3
 layout_mode = 0
 offset_left = 602.0
@@ -205,45 +204,45 @@ offset_bottom = 482.0
 icon = ExtResource("6_amv7k")
 flat = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=128869504]
 offset_left = 982.0
 offset_right = 1421.0
 offset_bottom = 378.0
 scale = Vector2(0.25, 0.25)
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=652954793]
 layout_mode = 2
 texture = ExtResource("8_qs05v")
 
-[node name="animaislabel" type="Label" parent="HBoxContainer"]
+[node name="animaislabel" type="Label" parent="HBoxContainer" unique_id=603153573]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gpiub")
 theme_override_font_sizes/font_size = 100
 text = "0"
 
-[node name="Moedas" type="HBoxContainer" parent="."]
+[node name="Moedas" type="HBoxContainer" parent="." unique_id=1784085777]
 offset_left = 1122.0
 offset_right = 1527.0
 offset_bottom = 384.0
 scale = Vector2(0.284715, 0.25)
 
-[node name="TextureRect" type="TextureRect" parent="Moedas"]
+[node name="TextureRect" type="TextureRect" parent="Moedas" unique_id=244429967]
 layout_mode = 2
 texture = ExtResource("9_g10ll")
 
-[node name="Label" type="Label" parent="Moedas"]
+[node name="Label" type="Label" parent="Moedas" unique_id=1474242423]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gpiub")
 theme_override_font_sizes/font_size = 100
 text = "0"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=88560538]
 offset_left = 3.0
 offset_top = 666.0
 offset_right = 221.0
 offset_bottom = 719.0
 
-[node name="Label" type="Label" parent="HBoxContainer2"]
+[node name="Label" type="Label" parent="HBoxContainer2" unique_id=133474249]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gpiub")
 text = "Colete todas as moedas!!!!!"
